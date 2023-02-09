@@ -30,14 +30,7 @@ type date struct {
 	Dates []string `json:"dates"`
 }
 
-type relation struct {
-	Id    int      `json:"id"`
-	Dates asosiation `json:"datesLocations"`
-}
 
-type asosiation struct{
-
-}
 
 // {"artists":"https://groupietrackers.herokuapp.com/api/artists","locations":"https://groupietrackers.herokuapp.com/api/locations","dates":"https://groupietrackers.herokuapp.com/api/dates","relation":"https://groupietrackers.herokuapp.com/api/relation"}
 func RecupArtists() []groupe {
@@ -101,25 +94,3 @@ func RecupLocation(g []groupe) []location {
 	return lisrRelation
 }
 
-// func RecupRelation(g []groupe) []relation {
-// 	var listDate []relation
-// 	for i := 0; i < len(g); i++ {
-// 		url := g[i].Relations // adresse url
-// 		req, _ := http.NewRequest("GET", url, nil)
-// 		res, erre := http.DefaultClient.Do(req)
-// 		if erre != nil {
-// 			fmt.Println("Error", erre)
-// 		}
-// 		var l relation
-// 		defer res.Body.Close()
-// 		body, _ := ioutil.ReadAll(res.Body)
-// 		err := json.Unmarshal([]byte(body), &l)
-// 		if err != nil {
-// 			fmt.Println("Error", err)
-// 		} else {
-// 			listDate = append(listDate, l)
-// 		}
-// 	}
-// 	fmt.Print(listDate)
-// 	return listDate
-// }
