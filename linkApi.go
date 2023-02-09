@@ -22,16 +22,18 @@ type groupe struct {
 var g []groupe
 
 // {"artists":"https://groupietrackers.herokuapp.com/api/artists","locations":"https://groupietrackers.herokuapp.com/api/locations","dates":"https://groupietrackers.herokuapp.com/api/dates","relation":"https://groupietrackers.herokuapp.com/api/relation"}
-func RecupInfo() {
+func RecupInfo() groupe {
 	url := "https://groupietrackers.herokuapp.com/api/artists" // adresse url
 	req, _ := http.NewRequest("GET", url, nil)
 	res, _ := http.DefaultClient.Do(req)
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
-	fmt.Println(string(body))
+	// fmt.Println(string(body))
 	err := json.Unmarshal([]byte(body), &g)
 	if err != nil {
 		fmt.Println("Error", err)
 	}
-	fmt.Println("Person:", g[0])
+	// fmt.Println("Person:", g[0])
+	// return &g
+	return g[0]
 }
