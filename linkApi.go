@@ -93,4 +93,3 @@ func RecupLocation(g []groupe) []location {
 	}
 	return lisrRelation
 }
-
