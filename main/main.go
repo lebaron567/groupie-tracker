@@ -12,6 +12,10 @@ func main() {
 	// Load all assets :
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	groupes := groupieTrackers.RecupInfo()
+	// fmt.Println(groupes)
+	// for i := 0; i < len(groupes); i++ {
+	// 	fmt.Print(groupes[i].Name)
+	// }
 	// fmt.Println(groupes.Name)
 	// Load the first page of the game
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {

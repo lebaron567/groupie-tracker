@@ -22,7 +22,7 @@ type groupe struct {
 var g []groupe
 
 // {"artists":"https://groupietrackers.herokuapp.com/api/artists","locations":"https://groupietrackers.herokuapp.com/api/locations","dates":"https://groupietrackers.herokuapp.com/api/dates","relation":"https://groupietrackers.herokuapp.com/api/relation"}
-func RecupInfo() groupe {
+func RecupInfo() []groupe {
 	url := "https://groupietrackers.herokuapp.com/api/artists" // adresse url
 	req, _ := http.NewRequest("GET", url, nil)
 	res, _ := http.DefaultClient.Do(req)
@@ -35,5 +35,5 @@ func RecupInfo() groupe {
 	}
 	// fmt.Println("Person:", g[0])
 	// return &g
-	return g[0]
+	return g
 }
