@@ -1,36 +1,13 @@
-package main
+package groupieTrackers
 
-import (
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
-	"net/http"
-)
+import "text/template"
 
-type groupe struct {
-	Id           int      `json"id"`
-	Image        string   `json"image"`
-	Name         string   `json"name"`
-	Members      []string `json"members"`
-	CreationDate int      `json"creationDate"`
-	FirstAlbum   string   `json"firstAlbum"`
-	Locations    string   `json"locations"`
-	ConcertDates string   `json"concertDates"`
-	Relations    string   `json"relations"`
-}
+// Function that load all templates for all pages
+func LoadTemplates() *template.Template {
+	homePage := template.Must(template.ParseFiles("./templates/index.html"))
+	// gamePage := template.Must(template.ParseFiles("./templates/hangman.html"))
+	// winPage := template.Must(template.ParseFiles("./templates/win.html"))
+	// failPage := template.Must(template.ParseFiles("./templates/fail.html"))
 
-var g []groupe
-
-func main() {
-	url := "https://groupietrackers.herokuapp.com/api/artists" // adresse url
-	req, _ := http.NewRequest("GET", url, nil)
-	res, _ := http.DefaultClient.Do(req)
-	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
-	// fmt.Println(string(body[1]))
-	err := json.Unmarshal([]byte(body), &g)
-	if err != nil {
-		fmt.Println("Error", err)
-	}
-	fmt.Println("Person:", g[0])
+	return homePage
 }
