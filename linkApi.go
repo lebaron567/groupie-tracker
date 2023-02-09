@@ -23,7 +23,12 @@ var g []groupe
 
 // {"artists":"https://groupietrackers.herokuapp.com/api/artists","locations":"https://groupietrackers.herokuapp.com/api/locations","dates":"https://groupietrackers.herokuapp.com/api/dates","relation":"https://groupietrackers.herokuapp.com/api/relation"}
 func RecupInfo() []groupe {
-	url := "https://groupietrackers.herokuapp.com/api/artists" // adresse url
+	url := "https://groupietrackers.herokuapp.com/api/artists" // adresse url artist
+	infoArtist := RecupInfoArtists(url)
+	return infoArtist
+}
+
+func RecupInfoArtists(url string) []groupe {
 	req, _ := http.NewRequest("GET", url, nil)
 	res, _ := http.DefaultClient.Do(req)
 	defer res.Body.Close()
@@ -33,7 +38,5 @@ func RecupInfo() []groupe {
 	if err != nil {
 		fmt.Println("Error", err)
 	}
-	// fmt.Println("Person:", g[0])
-	// return &g
 	return g
 }
