@@ -6,14 +6,13 @@
     <title>Groupie-Tracker</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'>
-    <script src='main.js'></script>
+    <script src='./assets/js/main.js'></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
         <!-- Menu nav -->
         <header>
-            
-             <nav class="nav">
+            <nav class="nav">
                  <ul>
                      <li class="btn-nav">
                          <a href="index.html">Home</a>
@@ -24,12 +23,31 @@
                      <li class="btn-nav">
                          <a href="Location.html">Location</a>
                      </li>
-
-                 </ul>
+                </ul>
              </nav>
          </header>
+        
+         <!-- Artiste Page-->
 
+         <main>
+           <input class="barre-recherche" label="search" type="text" placeholder="search artiste...">
+         
 
-     
+         <div class="Card">
+            <div class="card-image">
+                <img src="./assets/img/500x500.jpg"  alt="Image" height="300" width="300"/>
+            </div>
+            <!-- Corp carte -->
+            <div class="card-body">
+                <!-- Nom des groupe -->
+                <div class="card-title">
+                    <h3>Groupe</h3>
+                </div>
+                <div class="card-concert">
+                    <h3>Concert</h3>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
