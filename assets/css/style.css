@@ -1,5 +1,4 @@
 * {
-    margin: 0;
     padding: 0;
 	text-decoration: none;
 	list-style: none;
@@ -59,8 +58,10 @@ label, #toggle {
 
 .information {
     display: flex;
+    margin: auto;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 main {
