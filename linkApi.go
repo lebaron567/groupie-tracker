@@ -33,12 +33,12 @@ type date struct {
 var g []groupe
 
 // {"artists":"https://groupietrackers.herokuapp.com/api/artists","locations":"https://groupietrackers.herokuapp.com/api/locations","dates":"https://groupietrackers.herokuapp.com/api/dates","relation":"https://groupietrackers.herokuapp.com/api/relation"}
-func RecupInfo() ([]groupe, []date, []location) {
+func RecupInfo() []groupe {
 	url := "https://groupietrackers.herokuapp.com/api/artists" // adresse url artist
 	infoArtist := RecupInfoArtists(url)
-	infoDate := RecupDates(infoArtist)
-	infoLocation := RecupLocation(infoArtist)
-	return infoArtist, infoDate, infoLocation
+	RecupDates(infoArtist)
+	RecupLocation(infoArtist)
+	return infoArtist
 }
 
 func RecupInfoArtists(url string) []groupe {
