@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"groupieTrackers"
 	"log"
 	"net/http"
@@ -11,7 +12,8 @@ func main() {
 
 	// Load all assets :
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-	groupes := groupieTrackers.RecupInfo()
+	groupes, infoDate, infoLocation := groupieTrackers.RecupInfo()
+	fmt.Println(infoDate, infoLocation)
 	// fmt.Println(groupes)
 	// for i := 0; i < len(groupes); i++ {
 	// 	fmt.Print(groupes[i].Name)
@@ -31,7 +33,7 @@ func main() {
 	http.HandleFunc("/artiste", func(w http.ResponseWriter, r *http.Request) {
 		artistPage.Execute(w, groupes)
 	})
-
+	fmt.Println("Serveur start at : http://localhost:8080/")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
 	}
