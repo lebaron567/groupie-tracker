@@ -5,6 +5,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Groupie-Tracker</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/style.css'>
     <!-- <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'> -->
     <!-- <script src='main.js'></script> -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -26,19 +27,23 @@
                      </li>
                  </ul>
              </nav>
-             <p>{{ range . }}
-                <img src="{{.Image}}" alt="groupeImage">
-                <p>{{.Name}}</p>
-                <p> Members :
-                    {{ range .Members }}
-                    <br>
-                    -
-                    {{.}}
-                    {{ end }}
-                </p>
-                <p>{{.CreationDate}}</p>
-                <p>{{.FirstAlbum}}</p>
+            </header>
+            <div class="artistes">
+                <p>{{ range . }}
+                <div>
+                    <img src="{{.Image}}" alt="groupeImage">
+                    <p>{{.Name}}</p>
+                    <p> Members :
+                        {{ range .Members }}
+                        <br>
+                        -
+                        {{.}}
+                        {{ end }}
+                    </p>
+                    <p>{{.CreationDate}}</p>
+                    <p>{{.FirstAlbum}}</p>
+                    </div>
                 {{ end }}</p>
-         </header>
-</body>
+            </div>
+    </body>
 </html>
