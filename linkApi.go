@@ -56,7 +56,7 @@ func RecupInfoArtists(url string) []groupe {
 	return g
 }
 
-func RecupDates(g []groupe) []date {
+func RecupDates(g []groupe) {
 	var listDate []date
 	for i := 0; i < len(g); i++ {
 		url := g[i].ConcertDates // adresse url
@@ -75,10 +75,9 @@ func RecupDates(g []groupe) []date {
 			listDate = append(listDate, d)
 		}
 	}
-	return listDate
 }
 
-func RecupLocation(g []groupe) []location {
+func RecupLocation(g []groupe) {
 	var lisrRelation []location
 	for i := 0; i < len(g); i++ {
 		url := g[i].Locations // adresse url
@@ -97,5 +96,4 @@ func RecupLocation(g []groupe) []location {
 			lisrRelation = append(lisrRelation, l)
 		}
 	}
-	return lisrRelation
 }

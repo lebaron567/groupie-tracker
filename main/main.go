@@ -12,27 +12,23 @@ func main() {
 
 	// Load all assets :
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-	groupes, infoDate, infoLocation := groupieTrackers.RecupInfo()
-	fmt.Println(infoDate, infoLocation)
-	// fmt.Println(groupes)
-	// for i := 0; i < len(groupes); i++ {
-	// 	fmt.Print(groupes[i].Name)
-	// }
-	// fmt.Println(groupes.Name)
+	infoArtist := groupieTrackers.RecupInfo()
+
 	// Load the first page of the game
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		// level = r.FormValue("buttonLevel")
 		// homePage.Execute(w, nil)
-		homePage.Execute(w, groupes)
+		homePage.Execute(w, infoArtist)
 	})
 
 	http.HandleFunc("/location", func(w http.ResponseWriter, r *http.Request) {
-		locationPage.Execute(w, groupes)
+		locationPage.Execute(w, infoArtist)
 	})
 
 	http.HandleFunc("/artiste", func(w http.ResponseWriter, r *http.Request) {
-		artistPage.Execute(w, groupes)
+		artistPage.Execute(w, infoArtist)
 	})
+
 	fmt.Println("Serveur start at : http://localhost:8080/")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
