@@ -26,7 +26,10 @@ func main() {
 	})
 
 	http.HandleFunc("/artiste", func(w http.ResponseWriter, r *http.Request) {
+		// input := r.FormValue("searchBar")
+
 		artistPage.Execute(w, listGroups)
+
 	})
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
