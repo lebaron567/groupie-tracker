@@ -33,12 +33,12 @@ type date struct {
 var g []groupe
 
 // {"artists":"https://groupietrackers.herokuapp.com/api/artists","locations":"https://groupietrackers.herokuapp.com/api/locations","dates":"https://groupietrackers.herokuapp.com/api/dates","relation":"https://groupietrackers.herokuapp.com/api/relation"}
-func RecupInfo() []groupe {
+func RecupInfo() ([]groupe, []date, []location) {
 	url := "https://groupietrackers.herokuapp.com/api/artists" // adresse url artist
 	infoArtist := RecupInfoArtists(url)
-	RecupDates(infoArtist)
-	RecupLocation(infoArtist)
-	return infoArtist
+	listDate := RecupDates(infoArtist)
+	lisrRelation := RecupLocation(infoArtist)
+	return infoArtist, listDate, lisrRelation
 }
 
 func RecupInfoArtists(url string) []groupe {
@@ -56,7 +56,7 @@ func RecupInfoArtists(url string) []groupe {
 	return g
 }
 
-func RecupDates(g []groupe) {
+func RecupDates(g []groupe) []date {
 	var listDate []date
 	for i := 0; i < len(g); i++ {
 		url := g[i].ConcertDates // adresse url
@@ -75,9 +75,10 @@ func RecupDates(g []groupe) {
 			listDate = append(listDate, d)
 		}
 	}
+	return listDate
 }
 
-func RecupLocation(g []groupe) {
+func RecupLocation(g []groupe) []location {
 	var lisrRelation []location
 	for i := 0; i < len(g); i++ {
 		url := g[i].Locations // adresse url
@@ -96,4 +97,5 @@ func RecupLocation(g []groupe) {
 			lisrRelation = append(lisrRelation, l)
 		}
 	}
+	return lisrRelation
 }

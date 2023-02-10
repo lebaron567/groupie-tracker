@@ -12,7 +12,7 @@ func main() {
 
 	// Load all assets :
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-	infoArtist := groupieTrackers.RecupInfo()
+	infoArtist, listDate, lisrRelation := groupieTrackers.RecupInfo()
 
 	// Load the first page of the game
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
