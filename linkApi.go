@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type groupe struct {
+type artist struct {
 	Id           int      `json:"id"`
 	Image        string   `json:"image"`
 	Name         string   `json:"name"`
@@ -30,18 +30,49 @@ type date struct {
 	Dates []string `json:"dates"`
 }
 
-var g []groupe
+var g []artist
+
+type groupe struct{   
+	Image        string   
+	Name         string  
+	Members      []string 
+	CreationDate int      
+	FirstAlbum   string
+	concertDates []concert
+
+}
+
+type concert struct{
+	date   string
+	location string
+}
 
 // {"artists":"https://groupietrackers.herokuapp.com/api/artists","locations":"https://groupietrackers.herokuapp.com/api/locations","dates":"https://groupietrackers.herokuapp.com/api/dates","relation":"https://groupietrackers.herokuapp.com/api/relation"}
-func RecupInfo() ([]groupe, []date, []location) {
+func RecupInfo() []groupe {
+	var listGroups []groupe
+	var groups groupe
+	var concertDate concert
 	url := "https://groupietrackers.herokuapp.com/api/artists" // adresse url artist
 	infoArtist := RecupInfoArtists(url)
 	infoDate := RecupDates(infoArtist)
 	infoLocation := RecupLocation(infoArtist)
-	return infoArtist, infoDate, infoLocation
+	for i := 0; i < len(g); i++ {
+		groups.Image =infoArtist[i].Image
+		groups.Name =infoArtist[i].Name
+		groups.Members =infoArtist[i].Members
+		groups.CreationDate =infoArtist[i].CreationDate
+		groups.FirstAlbum =infoArtist[i].FirstAlbum
+		for y := 0; y < len(infoDate[i].Dates); y++ {
+			concertDate.date= infoDate[i].Dates[y]
+			concertDate.date= infoLocation[i].Locations[y]
+			groups.concertDates =append(groups.concertDates, concertDate)
+		}
+		listGroups = append(listGroups, groups)
+	}
+	return listGroups
 }
 
-func RecupInfoArtists(url string) []groupe {
+func RecupInfoArtists(url string) []artist {
 	req, _ := http.NewRequest("GET", url, nil)
 	res, erre := http.DefaultClient.Do(req)
 	if erre != nil {
@@ -56,7 +87,7 @@ func RecupInfoArtists(url string) []groupe {
 	return g
 }
 
-func RecupDates(g []groupe) []date {
+func RecupDates(g []artist) []date {
 	var listDate []date
 	for i := 0; i < len(g); i++ {
 		url := g[i].ConcertDates // adresse url
@@ -78,7 +109,7 @@ func RecupDates(g []groupe) []date {
 	return listDate
 }
 
-func RecupLocation(g []groupe) []location {
+func RecupLocation(g []artist) []location {
 	var lisrRelation []location
 	for i := 0; i < len(g); i++ {
 		url := g[i].Locations // adresse url
