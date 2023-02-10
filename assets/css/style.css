@@ -3,7 +3,6 @@
     padding: 0;
 	text-decoration: none;
 	list-style: none;
-    color: white;
     font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
 }
@@ -84,4 +83,9 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between
+}
+ 
+.text {
+    background-color : white;
+    border: solid;
 }

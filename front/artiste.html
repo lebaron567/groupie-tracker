@@ -30,16 +30,9 @@
             </header>
             <div class="artistes">
                 <p>{{ range . }}
-                <div>
+                <div class="text">
                     <img src="{{.Image}}" alt="groupeImage">
                     <p>{{.Name}}</p>
-                    <p> Members :
-                        {{ range .Members }}
-                        <br>
-                        -
-                        {{.}}
-                        {{ end }}
-                    </p>
                     <p>{{.CreationDate}}</p>
                     <p>{{.FirstAlbum}}</p>
                     </div>
