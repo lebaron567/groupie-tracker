@@ -32,41 +32,32 @@ type date struct {
 
 var g []artist
 
-type groupe struct{   
-	Image        string   
-	Name         string  
-	Members      []string 
-	CreationDate int      
+type groupe struct {
+	Image        string
+	Name         string
+	Members      []string
+	CreationDate int
 	FirstAlbum   string
-	concertDates []concert
-
-}
-
-type concert struct{
-	date   string
-	location string
+	Dates        []string
+	location     []string
 }
 
 // {"artists":"https://groupietrackers.herokuapp.com/api/artists","locations":"https://groupietrackers.herokuapp.com/api/locations","dates":"https://groupietrackers.herokuapp.com/api/dates","relation":"https://groupietrackers.herokuapp.com/api/relation"}
 func RecupInfo() []groupe {
 	var listGroups []groupe
 	var groups groupe
-	var concertDate concert
 	url := "https://groupietrackers.herokuapp.com/api/artists" // adresse url artist
 	infoArtist := RecupInfoArtists(url)
 	infoDate := RecupDates(infoArtist)
 	infoLocation := RecupLocation(infoArtist)
 	for i := 0; i < len(g); i++ {
-		groups.Image =infoArtist[i].Image
-		groups.Name =infoArtist[i].Name
-		groups.Members =infoArtist[i].Members
-		groups.CreationDate =infoArtist[i].CreationDate
-		groups.FirstAlbum =infoArtist[i].FirstAlbum
-		for y := 0; y < len(infoDate[i].Dates); y++ {
-			concertDate.date= infoDate[i].Dates[y]
-			concertDate.date= infoLocation[i].Locations[y]
-			groups.concertDates =append(groups.concertDates, concertDate)
-		}
+		groups.Image = infoArtist[i].Image
+		groups.Name = infoArtist[i].Name
+		groups.Members = infoArtist[i].Members
+		groups.CreationDate = infoArtist[i].CreationDate
+		groups.FirstAlbum = infoArtist[i].FirstAlbum
+		groups.Dates = infoDate[i].Dates
+		groups.location = infoLocation[i].Locations
 		listGroups = append(listGroups, groups)
 	}
 	return listGroups
