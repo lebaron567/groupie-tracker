@@ -86,13 +86,3 @@ main {
     align-items: center;
 }
 
-.artistes{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between
-}
- 
-.text {
-    background-color : white;
-    border: solid;
-}
