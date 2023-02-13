@@ -2,7 +2,6 @@
     padding: 0;
 	text-decoration: none;
 	list-style: none;
-    color: white;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -86,65 +85,14 @@ main {
     gap: 100px;
     align-items: center;
 }
-/* Artiste page */
-main {
+
+.artistes{
     display: flex;
-    flex-direction: column;
-    gap: 100px;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between
 }
-
-input {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 50%;
-    height: 100%;
-    padding: 5px;
-    border-radius: 10px;
-    border-color: none;
-    border-style : none;
-    outline: none;
-    color: #121212;
-    padding: 5px;
-}
-
-.Card {
-    width: 300px; 
-    background-color: white; 
-    /*box-shadow: 0px 5px 20px #999;*/
-    color: #121212;
-}
-
-.Card:hover {
-    height: 70vh;
-    
-}
-
-.card-image {
-    height: 300px;
-    position: relative;
-    overflow: hidden;
-}
-
-.card-body {
-    text-align:center;  
-    padding: 15px 20px; 
-    box-sizing: border-box; 
-    color: #121212;
-}
-
-.card-title h3 {
-    text-align:center;
-    text-transform:uppercase;
-    font-weight: bold;
-    color: #121212;
-    font-size: 10px;
-  }
-.card-concert h3 {
-    text-align:center;
-    text-transform:uppercase;
-    font-weight: bold;
-    color: #121212;
-    font-size: 10px; 
+ 
+.text {
+    background-color : white;
+    border: solid;
 }
