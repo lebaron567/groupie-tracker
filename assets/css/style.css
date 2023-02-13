@@ -2,28 +2,31 @@
     padding: 0;
 	text-decoration: none;
 	list-style: none;
-    color: white;
     font-family: 'Poppins', sans-serif;
 }
 
 body {
-    /*background: linear-gradient(90deg ,hsl(279, 100%, 46%) 15%, #2b94e5 100%);*/
-    background-color: #121212;
+    background: linear-gradient(90deg ,hsl(279, 100%, 46%) 15%, #2b94e5 100%);
+    height: 43rem;
+    margin: 0;
+    /* background-color: #121212; */
 }
 
 header {
-    position: sticky;
+    position: static;
     display: flex;
     flex-direction: row;
     align-items: center;
     height: 100px;
     width: 100%;
     top: 0;
-    /*backdrop-filter: blur(5px);*/
+    backdrop-filter: blur(5px);
 }
+
 label, #toggle {
     display: none;
 }
+
 .nav {
 	height: 100px;
     width: 100%;
@@ -31,7 +34,7 @@ label, #toggle {
 	justify-content: center;
 	box-sizing: border-box;
 	align-items: center;
-    position: sticky;
+    position: static;
     top: 0;
 }
 
@@ -42,7 +45,6 @@ label, #toggle {
 .nav ul {
     display: flex;
     flex-direction: row;
-    
 }
 
 .nav ul .btn-nav {
@@ -51,41 +53,32 @@ label, #toggle {
 }
 
 .nav ul .btn-nav:hover a {
-    color: #2b94e5;
+    color: #ffffff;
 	transition: 0.3s;
-    
 }
 
 .information {
     display: flex;
-    margin: auto;
-    align-items: center;
+    margin-top: 10vh;
+    align-items: center;    
     justify-content: center;
     flex-direction: column;
+    color: #ffffff;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    gap: 100px;
-    align-items: center;
-}
-
-.home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.home .home-info {
-    margin-top: 50px;
+.credit{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    gap: 100px;
-    align-items: center;
+    color: #ffffff;
+    background-color: #000000;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* margin-right: 0rem;
+    padding-right: 0rem; */
 }
+
 /* Artiste page */
 main {
     display: flex;

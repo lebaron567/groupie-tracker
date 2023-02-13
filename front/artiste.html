@@ -5,8 +5,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Groupie-Tracker</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!-- <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'> -->
-    <!-- <script src='main.js'></script> -->
+    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -16,29 +15,26 @@
             <nav class="nav">
                  <ul>
                      <li class="btn-nav">
-                         <a href="index.html">Home</a>
+                         <a href="index">Home</a>
                      </li>
                      <li class="btn-nav">
-                         <a href="Artiste.html">Artiste</a>
+                         <a href="Artiste">Artiste</a>
                      </li>
                      <li class="btn-nav">
-                         <a href="Location.html">Location</a>
+                         <a href="Location">Location</a>
                      </li>
                 </ul>
              </nav>
-             <p>{{ range . }}
-                <img src="{{.Image}}" alt="groupeImage">
-                <p>{{.Name}}</p>
-                <p> Members :
-                    {{ range .Members }}
-                    <br>
-                    -
-                    {{.}}
-                    {{ end }}
-                </p>
-                <p>{{.CreationDate}}</p>
-                <p>{{.FirstAlbum}}</p>
+            </header>
+            <div class="artistes">
+                <p>{{ range . }}
+                <div class="text">
+                    <img src="{{.Image}}" alt="groupeImage">
+                    <p>{{.Name}}</p>
+                    <p>{{.CreationDate}}</p>
+                    <p>{{.FirstAlbum}}</p>
+                    </div>
                 {{ end }}</p>
-         </header>
-</body>
+            </div>
+    </body>
 </html>
