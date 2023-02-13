@@ -8,7 +8,7 @@
     <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/style.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/artiste.css'>
     <!-- <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'> -->
-    <!-- <script src='main.js'></script> -->
+    <!--<script src='../assets/js/main.js'></script>--> 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -33,9 +33,19 @@
                 <p>{{ range . }}
                 <div class="card">
                     <img src="{{.Image}}" alt="groupeImage">
-                    <p class="name">{{.Name}}</p>
+                    <h3 class="name">{{.Name}}</h3>
+                    <p style="text-align: center;"> Members :
+                        {{ range .Members }}
+                        <br>
+                        -
+                        {{.}}
+                        {{ end }}
+                    </p>
+                    <p>{{.CreationDate}}</p>
+                    <p>{{.FirstAlbum}}</p>
                     </div>
-                {{ end }}</p>
+                        {{ end }}
+                    </p>
             </div>
     </body>
 </html>
