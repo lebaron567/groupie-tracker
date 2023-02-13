@@ -6,6 +6,7 @@
     <title>Groupie-Tracker</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/artiste.css'>
     <!-- <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'> -->
     <!-- <script src='main.js'></script> -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -32,9 +33,7 @@
                 <p>{{ range . }}
                 <div class="text">
                     <img src="{{.Image}}" alt="groupeImage">
-                    <p>{{.Name}}</p>
-                    <p>{{.CreationDate}}</p>
-                    <p>{{.FirstAlbum}}</p>
+                    <p class="name">{{.Name}}</p>
                     </div>
                 {{ end }}</p>
             </div>
