@@ -1,0 +1,73 @@
+* {
+    padding: 0;
+	text-decoration: none;
+	list-style: none;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+body {
+    background: linear-gradient(90deg ,hsl(279, 100%, 46%) 15%, #2b94e5 100%);
+}
+
+.artistes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+ 
+.card {
+    background-color : white;
+    border: solid;
+    padding: 20px;
+    margin: 10px;
+    height: 300px;
+    width: 250px;
+    transition: 0.05s;
+}
+
+h3.name {
+    color: #121212;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+    
+}
+
+.card p {
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    transition: 0.2s;
+    align-items: center;
+}
+
+.card:hover p {
+    opacity: 1;
+    color: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    margin: 0;
+}
+p.name{
+    display: flex;
+    justify-content: center;
+    color: #121212;
+}
+
+img{
+    border: solid;
+    border-color: #121212;
+    display: flex;
+    justify-content: center;
+}
+
+.card:hover {
+    transform:scale(1.05);
+    height: auto; 
+}

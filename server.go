@@ -10,3 +10,18 @@ func LoadTemplates() (*template.Template, *template.Template, *template.Template
 
 	return homePage, artistPage, locationPage
 }
+
+func SearchGroupe(nameSearch string, g []groupe) []groupe {
+	for index, element := range g {
+		if element.Name == nameSearch {
+			save := g[index]
+			g[index] = g[0]
+			g[index].IsSearch = false
+			g[0] = save
+			g[0].IsSearch = true
+		} else {
+			g[index].IsSearch = false
+		}
+	}
+	return g
+}

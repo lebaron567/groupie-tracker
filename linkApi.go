@@ -40,6 +40,7 @@ type groupe struct {
 	FirstAlbum   string
 	Dates        []string
 	location     []string
+	IsSearch     bool
 }
 
 // {"artists":"https://groupietrackers.herokuapp.com/api/artists","locations":"https://groupietrackers.herokuapp.com/api/locations","dates":"https://groupietrackers.herokuapp.com/api/dates","relation":"https://groupietrackers.herokuapp.com/api/relation"}
@@ -58,8 +59,10 @@ func RecupInfo() []groupe {
 		groups.FirstAlbum = infoArtist[i].FirstAlbum
 		groups.Dates = infoDate[i].Dates
 		groups.location = infoLocation[i].Locations
+		groups.IsSearch = false
 		listGroups = append(listGroups, groups)
 	}
+	listGroups[0].IsSearch = true
 	return listGroups
 }
 

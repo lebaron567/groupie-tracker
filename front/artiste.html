@@ -5,7 +5,8 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Groupie-Tracker</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/artiste.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/style.css'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,10 +19,10 @@
                          <a href="index">Home</a>
                      </li>
                      <li class="btn-nav">
-                         <a href="Artiste">Artiste</a>
+                         <a href="artiste">Artiste</a>
                      </li>
                      <li class="btn-nav">
-                         <a href="Location">Location</a>
+                         <a href="location">Location</a>
                      </li>
                 </ul>
              </nav>
@@ -30,15 +31,26 @@
                 <input id="userinput" name="userSearch" type="text" value=""/>
                 <input id="usersubmit" type="submit" value="send" /> 
             </form>
+            {{ if not (index . 0).IsSearch }}
+                <p>Ce nom n'est pas présent dans cette page</p>
+            {{ end }}
             <div class="artistes">
-                <p>{{ range . }}
-                <div class="text">
+                {{ range . }}
+                <div class="card">
                     <img src="{{.Image}}" alt="groupeImage">
-                    <p>{{.Name}}</p>
+                    <h3 class="name">{{.Name}}</h3>
+                    <p style="text-align: center;"> Members :
+                        {{ range .Members }}
+                        <br>
+                        -
+                        {{.}}
+                        {{ end }}
+                    </p>
                     <p>{{.CreationDate}}</p>
                     <p>{{.FirstAlbum}}</p>
-                    </div>
-                {{ end }}</p>
+                </div>
+                {{ end }}
+
             </div>
     </body>
 </html>

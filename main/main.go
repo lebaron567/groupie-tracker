@@ -16,8 +16,6 @@ func main() {
 
 	// Load the first page of the game
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		// level = r.FormValue("buttonLevel")
-		// homePage.Execute(w, nil)
 		homePage.Execute(w, listGroups)
 	})
 
@@ -26,9 +24,11 @@ func main() {
 	})
 
 	http.HandleFunc("/artiste", func(w http.ResponseWriter, r *http.Request) {
-		// input := r.FormValue("searchBar")
+		searchUser := r.FormValue("userSearch")
+		if searchUser != "" {
+			listGroups = groupieTrackers.SearchGroupe(searchUser, listGroups)
+		}
 		artistPage.Execute(w, listGroups)
-
 	})
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
