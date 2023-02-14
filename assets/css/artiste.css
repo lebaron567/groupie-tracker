@@ -15,8 +15,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    
-    
+    padding-top: 25px;
 }
  
 .card {
@@ -70,4 +69,46 @@ img{
 .card:hover {
     transform:scale(1.05);
     height: auto; 
+}
+
+input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 500px;
+    padding: 5px;
+    border-radius: 10px;
+    border-color: none;
+    border-style : none;
+    outline: none;
+    color: #121212;
+    padding: 5px;
+}
+
+input.btn-search {
+    display: flex;
+    justify-content: flex-end;
+    background-color: white;
+    width: 50px;
+    padding: 5px;
+    border-radius: 10px;
+    border-color: none;
+    border-style : none;
+    outline: none;
+    color: #121212;
+    padding: 5px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin: 0 10 0 10px;
+}
+
+/*main {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    align-items: center;
 }

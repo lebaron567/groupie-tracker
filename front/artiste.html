@@ -29,6 +29,12 @@
                 </ul>
              </nav>
             </header>
+            
+            <form>
+                <input type="text" name="search"  placeholder="Search Artiste ..." style="text-align: center;">
+                <input id="usersubmit" class="btn-search" type="submit" value="send" /> 
+            </form>
+            
             <div class="artistes" id="Card">
                 <p>{{ range . }}
                 <div class="card">
