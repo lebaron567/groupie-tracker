@@ -12,7 +12,7 @@ body {
 }
 
 header {
-    position: static;
+    position: sticky;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -33,7 +33,7 @@ label, #toggle {
 	justify-content: center;
 	box-sizing: border-box;
 	align-items: center;
-    position: static;
+    position: sticky;
     top: 0;
 }
 
@@ -49,6 +49,8 @@ label, #toggle {
 .nav ul .btn-nav {
     margin: 0 25px;
     font-size: 20px;
+    color: #616161;
+    
 }
 
 .nav ul .btn-nav:hover a {
@@ -78,24 +80,8 @@ label, #toggle {
 /* Artiste page */
 main {
     display: flex;
-    flex-direction: column;
+    flex-direction:row;
     gap: 100px;
     align-items: center;
+    justify-content: center;
 }
-
-
-input {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 50%;
-    height: 100%;
-    padding: 5px;
-    border-radius: 10px;
-    border-color: none;
-    border-style : none;
-    outline: none;
-    color: #121212;
-    padding: 5px;
-}
-

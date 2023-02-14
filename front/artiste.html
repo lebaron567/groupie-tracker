@@ -27,9 +27,10 @@
                 </ul>
              </nav>
             </header>
+            
             <form method="POST">
-                <input id="userinput" name="userSearch" type="text" value=""/>
-                <input id="usersubmit" type="submit" value="send" /> 
+                <input id="userinput" type="text" name="userSearch"  placeholder="Search Artiste ..." style="text-align: center;">
+                <input id="usersubmit" class="btn-search" type="submit" value="send" /> 
             </form>
             {{ if not (index . 0).IsSearch }}
                 <p>Ce nom n'est pas présent dans cette page</p>
