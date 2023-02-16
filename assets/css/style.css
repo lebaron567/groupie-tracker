@@ -85,3 +85,10 @@ main {
     align-items: center;
     justify-content: center;
 }
+
+.errorMsg{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+}

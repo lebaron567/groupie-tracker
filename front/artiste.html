@@ -32,9 +32,11 @@
                 <input id="userinput" type="text" name="userSearch"  placeholder="Search Artiste ..." style="text-align: center;">
                 <input id="usersubmit" class="btn-search" type="submit" value="send" /> 
             </form>
-            {{ if not (index . 0).IsSearch }}
-                <p>Ce nom n'est pas présent dans cette page</p>
-            {{ end }}
+            <div class="errorMsg">
+                {{ if not (index . 0).IsSearch }}
+                    <p>Ce nom n'est pas présent dans cette page</p>
+                {{ end }}
+            </div>
             <div class="artistes">
                 {{ range . }}
                 <div class="card">
