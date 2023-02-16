@@ -12,6 +12,7 @@ func main() {
 	fmt.Println("Serveur start at : http://localhost:8080/")
 	// Load all assets :
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets/"))))
+	//récuperer les info de l'"api"
 	listGroups := groupieTrackers.RecupInfo()
 
 	// Load the first page of the game
