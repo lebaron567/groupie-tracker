@@ -48,6 +48,10 @@
                     </p>
                     <p>{{.CreationDate}}</p>
                     <p>{{.FirstAlbum}}</p>
+
+                    <form action = "/concert" method="POST">
+                        <input type="submit"  id="id" name="id" placeholder="+ d'info" class="btn-search" value={{.Id}}>
+                    </form>
                 </div>
                 {{ end }}
 

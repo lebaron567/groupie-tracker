@@ -33,13 +33,14 @@ type date struct {
 var g []artist
 
 type groupe struct {
+	Id           int
 	Image        string
 	Name         string
 	Members      []string
 	CreationDate int
 	FirstAlbum   string
 	Dates        []string
-	location     []string
+	Location     []string
 	IsSearch     bool
 }
 
@@ -52,13 +53,14 @@ func RecupInfo() []groupe {
 	infoDate := RecupDates(infoArtist)
 	infoLocation := RecupLocation(infoArtist)
 	for i := 0; i < len(g); i++ {
+		groups.Id = infoArtist[i].Id
 		groups.Image = infoArtist[i].Image
 		groups.Name = infoArtist[i].Name
 		groups.Members = infoArtist[i].Members
 		groups.CreationDate = infoArtist[i].CreationDate
 		groups.FirstAlbum = infoArtist[i].FirstAlbum
 		groups.Dates = infoDate[i].Dates
-		groups.location = infoLocation[i].Locations
+		groups.Location = infoLocation[i].Locations
 		groups.IsSearch = false
 		listGroups = append(listGroups, groups)
 	}
