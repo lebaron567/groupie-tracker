@@ -65,9 +65,12 @@ img{
 }
 
 .card:hover {
-    transform:scale(1.05);
-    height: auto; 
+    transform:scale(1.050);
+    height: 50%; 
+    transition: 1s;
 }
+
+
 
 input {
     display: flex;
@@ -104,9 +107,17 @@ form {
     margin: 0 10 0 10px;
 }
 
-/*main {
+.display form input{
+    width: 100px;
+}
+
+.idValue{
+    opacity: 0;
+}
+
+.info{
+    margin-top: 15px;
     display: flex;
-    flex-direction: column;
-    gap: 100px;
-    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
 }
