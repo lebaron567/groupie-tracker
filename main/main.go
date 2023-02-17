@@ -36,20 +36,12 @@ func main() {
 	})
 
 	http.HandleFunc("/concert", func(w http.ResponseWriter, r *http.Request) {
-		id := r.FormValue("id")
+		id := r.FormValue("info")
 		idNum ,_ :=strconv.Atoi(id)
 		fmt.Println(listGroups[idNum])
 		concertPage.Execute(w, listGroups[idNum])
 	})
 
-	for _, i := range listGroups {
-		url := "/concert/" + i.Name
-		fmt.Println(url)
-		http.HandleFunc(url, func(w http.ResponseWriter, r *http.Request) {
-			fmt.Println("grsgd")
-			concertPage.Execute(w, i)
-		})
-	}
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)

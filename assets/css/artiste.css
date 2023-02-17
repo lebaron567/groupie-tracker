@@ -1,14 +1,4 @@
-* {
-    padding: 0;
-	text-decoration: none;
-	list-style: none;
-    font-family: 'Poppins', sans-serif;
-    color: white;
-}
 
-body {
-    background: linear-gradient(90deg ,hsl(279, 100%, 46%) 15%, #2b94e5 100%);
-}
 
 .artistes{
     display: flex;
@@ -37,21 +27,29 @@ h3.name {
     
 }
 
-.card p {
+.card .display {
     opacity: 0;
     display: flex;
+    align-content: space-around;
+    flex-direction: column;
     justify-content: center;
-    transition: 0.2s;
     align-items: center;
+    font-size: 14px;
+    margin: 0;
 }
 
-.card:hover p {
+.card:hover .display {
     opacity: 1;
     color: #121212;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 14px;
+    transition: 2s;
+    margin: 0;
+}
+
+.card:hover .display p{
     margin: 0;
 }
 p.name{
@@ -68,6 +66,22 @@ img{
 }
 
 .card:hover {
-    transform:scale(1.05);
-    height: auto; 
+    transform:scale(1.050);
+    height: 50%; 
+    transition: 1s;
+}
+
+.display form input{
+    width: 100px;
+}
+
+.btn-search{
+    opacity: 0;
+}
+
+.info{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
 }
