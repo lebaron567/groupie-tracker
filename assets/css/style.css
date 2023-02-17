@@ -49,6 +49,8 @@ label, #toggle {
 .nav ul .btn-nav {
     margin: 0 25px;
     font-size: 20px;
+    color: #616161;
+    
 }
 
 .nav ul .btn-nav:hover a {

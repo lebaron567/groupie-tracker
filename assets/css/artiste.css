@@ -1,4 +1,14 @@
+* {
+    padding: 0;
+	text-decoration: none;
+	list-style: none;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
 
+body {
+    background: linear-gradient(90deg ,hsl(279, 100%, 46%) 15%, #2b94e5 100%);
+}
 
 .artistes{
     display: flex;
