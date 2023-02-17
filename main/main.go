@@ -38,9 +38,10 @@ func main() {
 
 	http.HandleFunc("/concert", func(w http.ResponseWriter, r *http.Request) {
 		id := r.FormValue("info")
+		fmt.Println(id)
 		idNum ,_ :=strconv.Atoi(id)
-		fmt.Println(listGroups[idNum])
-		concertPage.Execute(w, listGroups[idNum])
+		fmt.Println(idNum)
+		concertPage.Execute(w, listGroups[idNum-1])
 	})
 
 
