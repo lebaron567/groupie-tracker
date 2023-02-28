@@ -39,7 +39,7 @@ type groupe struct {
 	Members      []string
 	CreationDate int
 	FirstAlbum   string
-	Dates        []string
+	Dates        [][]string
 	Location     []string
 	IsSearch     bool
 }
@@ -50,8 +50,8 @@ func RecupInfo() []groupe {
 	var groups groupe
 	url := "https://groupietrackers.herokuapp.com/api/artists" // adresse url artist
 	infoArtist := RecupInfoArtists(url)
-	infoDate := RecupDates(infoArtist)
-	infoLocation := RecupLocation(infoArtist)
+	// infoDate := RecupDates(infoArtist)
+	// infoLocation := RecupLocation(infoArtist)
 	for i := 0; i < len(g); i++ {
 		groups.Id = infoArtist[i].Id
 		groups.Image = infoArtist[i].Image
@@ -59,12 +59,16 @@ func RecupInfo() []groupe {
 		groups.Members = infoArtist[i].Members
 		groups.CreationDate = infoArtist[i].CreationDate
 		groups.FirstAlbum = infoArtist[i].FirstAlbum
-		groups.Dates = infoDate[i].Dates
-		groups.Location = infoLocation[i].Locations
+		// groups.Dates = infoDate[i].Dates
+		// groups.location = infoLocation[i].Locations
 		groups.IsSearch = false
 		listGroups = append(listGroups, groups)
 	}
 	listGroups[0].IsSearch = true
+	listGroups = RecupRealtion(listGroups)
+	// for _, artist := range listGroups {
+	// 	print(artist.Name)
+	// }
 	return listGroups
 }
 
@@ -125,4 +129,34 @@ func RecupLocation(g []artist) []location {
 		}
 	}
 	return lisrRelation
+}
+
+type indexage struct {
+	Index []relation `json:"index"`
+}
+type relation struct {
+	Id             int                 `json:"id"`
+	DatesLocations map[string][]string `json:"datesLocations"`
+}
+
+func RecupRealtion(g []groupe) []groupe {
+	req, _ := http.NewRequest("GET", "https://groupietrackers.herokuapp.com/api/relation", nil)
+	res, erre := http.DefaultClient.Do(req)
+	if erre != nil {
+		fmt.Println("Error", erre)
+	}
+	var i indexage
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+	err := json.Unmarshal([]byte(body), &i)
+	if err != nil {
+		fmt.Println("Error", err)
+	}
+	for index := 0; index < len(g); index++ {
+		for location := range i.Index[index].DatesLocations {
+			g[index].Location = append(g[index].Location, location) // rajouter un s à locations
+			g[index].Dates = append(g[index].Dates, i.Index[index].DatesLocations[location])
+		}
+	}
+	return g
 }
