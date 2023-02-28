@@ -24,8 +24,21 @@
                 </ul>
              </nav>
         </header>
+        <!-- range $index := .index -->
         <div>
-            <p>en cpours de dev</p>
+            {{ $indexSearch := 0}}
+            {{ $artist := index . $indexSearch}}
+            {{ $artist.Name}}
+            <br>
+            {{ range $index, $location := $artist.Location }}
+                {{ $location }}
+                {{ $date := index $artist.Dates $index }}
+                {{ range $date}}
+                <p>-    {{.}}</p>
+                    <br>
+                {{ end }}
+            {{ end }}
+
         </div>
 </body>
 </html>

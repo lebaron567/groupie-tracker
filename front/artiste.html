@@ -12,7 +12,6 @@
 <body>
         <!-- Menu nav -->
         <header>
-            
             <nav class="nav">
                  <ul>
                      <li class="btn-nav">
@@ -26,34 +25,32 @@
                      </li>
                 </ul>
              </nav>
-            </header>
-            
-            <form method="POST">
-                <input id="userinput" type="text" name="userSearch"  placeholder="Search Artiste ..." style="text-align: center;">
-                <input id="usersubmit" class="btn-search" type="submit" value="send" /> 
-            </form>
-            <div class="errorMsg">
-                {{ if not (index . 0).IsSearch }}
-                    <p>Ce nom n'est pas présent dans cette page</p>
-                {{ end }}
+        </header>
+        <form method="POST">
+            <input id="userinput" type="text" name="userSearch"  placeholder="Search Artiste ..." style="text-align: center;">
+            <input id="usersubmit" class="btn-search" type="submit" value="send" /> 
+        </form>
+        <div class="errorMsg">
+            {{ if not (index . 0).IsSearch }}
+                <p>Ce nom n'est pas présent dans cette page</p>
+            {{ end }}
+        </div>
+        <div class="artistes">
+            {{ range . }}
+            <div class="card">
+                <img src="{{.Image}}" alt="groupeImage">
+                <h3 class="name">{{.Name}}</h3>
+                <p style="text-align: center;"> Members :
+                    {{ range .Members }}   
+                    <br>
+                    -
+                    {{.}}
+                    {{ end }}
+                </p>
+                <p>{{.CreationDate}}</p>
+                <p>{{.FirstAlbum}}</p>
             </div>
-            <div class="artistes">
-                {{ range . }}
-                <div class="card">
-                    <img src="{{.Image}}" alt="groupeImage">
-                    <h3 class="name">{{.Name}}</h3>
-                    <p style="text-align: center;"> Members :
-                        {{ range .Members }}
-                        <br>
-                        -
-                        {{.}}
-                        {{ end }}
-                    </p>
-                    <p>{{.CreationDate}}</p>
-                    <p>{{.FirstAlbum}}</p>
-                </div>
-                {{ end }}
-
-            </div>
+            {{ end }}
+        </div>
     </body>
 </html>
