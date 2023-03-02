@@ -32,6 +32,10 @@ func SearchGroupe(nameSearch string, g []groupe) []groupe {
 	return g2
 }
 
-func trieAlphabetik(g []groupe){
-	
-}
+// func trieAlphabetik(g []groupe) []groupe {
+// 	if len(g) <= 1 {
+// 		return g
+// 	} else {
+// 		inférieur := []groupe{}
+// 	}
+// }
