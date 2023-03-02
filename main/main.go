@@ -38,12 +38,10 @@ func main() {
 
 	http.HandleFunc("/concert", func(w http.ResponseWriter, r *http.Request) {
 		id := r.FormValue("info")
-		fmt.Println(id)
-		idNum ,_ :=strconv.Atoi(id)
+		idNum, _ := strconv.Atoi(id)
 		fmt.Println(idNum)
 		concertPage.Execute(w, listGroups[idNum-1])
 	})
-
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
