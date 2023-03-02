@@ -6,6 +6,7 @@
     <title>Groupie-Tracker</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/artiste.css'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -27,8 +28,18 @@
              </nav>
         </header>
         <div>
-            <h1> {{.Name}} </h1>  
-            <p>  le groupe {{.Name }} c'est produi dans les ville:  {{ range .Location }} <br> - {{.}} {{ end }}</p>    
+            <h1> {{.Name}} </h1> 
+            <p> le groupe est crée en {{.CreationDate}} et le premier albume est sorti le {{.FirstAlbum}}</p>
+            <p>les membre sont: {{ range .Members }}
+            - {{.}} {{ end }}</p>
+            <!-- <p>  le groupe {{.Name }} c'est produi dans les ville:  {{ range .Location }} <br> - {{.}} {{ end }}</p>  -->
+            <p> voisi les concert des artite </p>
+            {{ $artist := .}}
+            {{ range $index, $location := .Location }}
+                <p>{{ $location }} :</p>
+                {{ $date := index $artist.Dates $index }}
+                <p>{{ range $date}} {{.}}.  {{ end }}</p>
+            {{ end }}
         </div>
     </body>
 </html>
