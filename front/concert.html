@@ -6,7 +6,7 @@
     <title>Groupie-Tracker</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/style.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/artiste.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/concert.css'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -27,19 +27,28 @@
                 </ul>
              </nav>
         </header>
-        <div>
+        <div class="display">
+            <img src="{{.Image}}" alt="groupeImage">
             <h1> {{.Name}} </h1> 
-            <p> le groupe est crée en {{.CreationDate}} et le premier albume est sorti le {{.FirstAlbum}}</p>
+            <p>le groupe est crée en {{.CreationDate}} et le premier albume est sorti le {{.FirstAlbum}}</p>
             <p>les membre sont: {{ range .Members }}
             - {{.}} {{ end }}</p>
             <!-- <p>  le groupe {{.Name }} c'est produi dans les ville:  {{ range .Location }} <br> - {{.}} {{ end }}</p>  -->
-            <p> voisi les concert des artite </p>
+            <p> voisi les concert du/des artiste:  </p>
             {{ $artist := .}}
+            <div class="localiation">
             {{ range $index, $location := .Location }}
+                <div class="lieux">
                 <p>{{ $location }} :</p>
                 {{ $date := index $artist.Dates $index }}
-                <p>{{ range $date}} {{.}}.  {{ end }}</p>
+                <div class="date">
+                {{ range $date}}
+                    <p> {{.}}  </p> 
+                    {{ end }}
+                </div> 
+            </div>
             {{ end }}
+            </div>
         </div>
     </body>
 </html>
