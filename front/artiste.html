@@ -36,23 +36,23 @@
             {{ end }}
         </div>
             <div class="artistes">
-                {{ range . }}
+                {{ range $index, $artist := . }}
                 <div class="card">
-                    <img src="{{.Image}}" alt="groupeImage">
-                    <h3 class="name">{{.Name}}</h3>
+                    <img src="{{$artist.Image}}" alt="groupeImage">
+                    <h3 class="name">{{$artist.Name}}</h3>
                     <div class="display">
-                        <p class="date"> {{.CreationDate}}</p>
+                        <p class="date"> {{$artist.CreationDate}}</p>
                         <div class="membre"> 
                         <p>Members :</p>
-                        {{ range .Members }}
+                        {{ range $artist.Members }}
                         <p>-{{.}}</p>
                         {{ end }}
                     </div>
-                    <form action = "/concert" method="POST" class="info">
-                        <input type="text"  id="info" name="info"  class="idValue" value={{.Id}} >
-                        <input type="submit"  id="id" name="id" placeholder="+ d'info" value="+d'info">
-                    </form>
-                </div>
+                        <form action = "/concert" method="POST" class="info">
+                            <input type="text"  id="info" name="info"  class="idValue" value={{$index}}>
+                            <input type="submit"  id="id" name="id" placeholder="+ d'info" value="+d'info">
+                        </form>
+                    </div>
                 </div>
                 {{ end }}
 

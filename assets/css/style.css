@@ -7,8 +7,8 @@
 
 body {
     background: linear-gradient(90deg ,hsl(279, 100%, 46%) 15%, #2b94e5 100%);
-    height: 43rem;
-    margin-top: 100px;
+    margin-top: 70px;
+    bottom: 0;
 }
 
 header {
@@ -16,10 +16,11 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 100px;
+    height: 60px;
     width: 100%;
     top: 0;
     backdrop-filter: blur(5px);
+    
 }
 
 label, #toggle {
@@ -67,7 +68,7 @@ label, #toggle {
     color: #ffffff;
 }
 
-.credit{
+footer{
     display: flex;
     flex-direction: row;
     color: #ffffff;
@@ -75,7 +76,7 @@ label, #toggle {
     justify-content: flex-end;
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: -webkit-fill-available;
 }
 /* Artiste page */
 main {
