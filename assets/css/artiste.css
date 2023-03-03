@@ -172,11 +172,12 @@ nav {
     height: 6vh;
     width: 25vw;
     background-color: #f5f5f5;
-    /* font-size: 16px; */
-    /* appearance: none; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.sortingChoicesBar{
+/* .sortingChoicesBar{
     padding: 10px;
     font-size: 16px;
 }
@@ -184,7 +185,7 @@ nav {
 .sortingChoicesBar:checked {
     background-color: #444;
     color: #f5f5f5;
-}
+} */
 
 .apllyBTN{
     background-color: #ABABAB;
