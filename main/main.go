@@ -41,7 +41,7 @@ func main() {
 		fmt.Println(id)
 		idNum, _ := strconv.Atoi(id)
 		fmt.Println(idNum)
-		concertPage.Execute(w, listGroups[idNum-1])
+		concertPage.Execute(w, listGroups[idNum])
 	})
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
