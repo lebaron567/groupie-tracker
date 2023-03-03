@@ -27,12 +27,13 @@ func main() {
 
 	http.HandleFunc("/artiste", func(w http.ResponseWriter, r *http.Request) {
 		searchUser := r.FormValue("userSearch")
-		// id := r.FormValue("id")
-		// fmt.Println(id)
 		if searchUser != "" {
 			listGroups = groupieTrackers.SearchGroupe(searchUser, listGroups)
 		}
-
+		// listGroups = groupieTrackers.TrieAlphabetik(listGroups)
+		// listGroups = groupieTrackers.SortCreationDate(listGroups, false)
+		// listGroups = groupieTrackers.TrieAlphabetik2(listGroups)
+		groupieTrackers.BubbleSort(listGroups)
 		artistPage.Execute(w, listGroups)
 	})
 
