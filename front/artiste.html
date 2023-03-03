@@ -34,29 +34,43 @@
                 <p>Ce nom n'est pas présent dans cette page</p>
             {{ end }}
         </div>
-            <div class="artistes">
-                {{ range $index, $artist := . }}
-                <div class="card">
-                    <img src="{{$artist.Image}}" alt="groupeImage">
-                    <h3 class="name">{{$artist.Name}}</h3>
-                    <div class="display">
-                        <p class="date"> {{$artist.CreationDate}}</p>
-                        <div class="membre"> 
-                        <p>Members :</p>
-                        {{ range $artist.Members }}
-                        <p>-{{.}}</p>
-                        {{ end }}
-                    </div>
-                        <form action = "/concert" method="POST" class="info">
-                            <input type="text"  id="info" name="info"  class="idValue" value={{$index}}>
-                            <input type="submit"  id="id" name="id" placeholder="+ d'info" value="+d'info">
-                        </form>
-                    </div>
+        <form method="POST">
+            <select name="sortingChoices" id="sortingChoices" class="sortingChoicesBar">
+                <option disabled selected> Filtres </option>
+                <option value="AscendingAlphabeticalSorting"> A -> Z</option>
+                <option value="DescendingAlphabeticalSorting"> Z -> A</option>
+                <option value="SortingAscendingCreationDate"> Dates de Création (croissant)</option>
+                <option value="SortingDescendingCreationDate">Dates de Création (décroissant)</option>
+                <option value="BubbleSortByNumberMemberAscending">Nombre de membre (croissant)</option>
+                <option value="BubbleSortByNumberMemberDescending">Nombre de membre (décroissant)</option>
+            </select>
+            <input type="submit" value="Appliquer" class="apllyBTN"/>
+        </form>
+        <div class="artistes">
+            {{ range . }}
+            <div class="card">
+                <img src="{{.Image}}" alt="groupeImage">
+                <h3 class="name">{{.Name}}</h3> 
+                <div class="display">
+                <div class="membre"> 
+                    <p>Members :</p>
+                    {{ range .Members }}
+                    <p>- {{.}}</p>
+                    {{ end }}
                 </div>
-                {{ end }}
+                <p>{{.CreationDate}}</p>
+                <p>{{.FirstAlbum}}</p>
+
+                <form action = "/concert" method="POST" class="info">
+                    <input type="text"  id="info" name="info"  class="idValue" value={{.Id}} >
+                    <input type="submit"  id="id" name="id" placeholder="+ d'info" value="+d'info">
+                </form>
+            </div>
+            </div>
+            {{ end }}
 
             </div>
-            <nav aria-label="pagination">
+            <!-- <nav aria-label="pagination">
                 <ul class="pagination">
                     <li><a href=""><span aria-hidden="true">«</span><span class="visuallyhidden">previous set of pages</span></a></li>
                     <li><a href=""><span class="visuallyhidden">page </span>1</a></li>
@@ -65,7 +79,7 @@
                     <li><a href=""><span class="visuallyhidden">page </span>4</a></li>
                     <li><a href=""><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">»</span></a></li>
                 </ul>
-            </nav>
+            </nav> -->
                 
     </body>
 </html>

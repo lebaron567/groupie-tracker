@@ -31,7 +31,3 @@ func SearchGroupe(nameSearch string, g []groupe) []groupe {
 	}
 	return g2
 }
-
-func trieAlphabetik(g []groupe){
-	
-}
