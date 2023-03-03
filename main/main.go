@@ -26,14 +26,28 @@ func main() {
 	})
 
 	http.HandleFunc("/artiste", func(w http.ResponseWriter, r *http.Request) {
+		sortingChoices := r.FormValue("sortingChoices")
 		searchUser := r.FormValue("userSearch")
+		if sortingChoices != "" {
+			if sortingChoices == "AscendingAlphabeticalSorting" {
+				listGroups = groupieTrackers.AscendingAlphabeticalSorting(listGroups)
+			} else if sortingChoices == "DescendingAlphabeticalSorting" {
+				listGroups = groupieTrackers.DescendingAlphabeticalSorting(listGroups)
+			} else if sortingChoices == "SortingAscendingCreationDate" {
+				listGroups = groupieTrackers.SortingCreationDate(listGroups, true)
+			} else if sortingChoices == "SortingDescendingCreationDate" {
+				listGroups = groupieTrackers.SortingCreationDate(listGroups, false)
+			} else if sortingChoices == "BubbleSortByNumberMemberAscending" {
+				listGroups = groupieTrackers.BubbleSortByNumberMemberAscending(listGroups)
+			} else if sortingChoices == "BubbleSortByNumberMemberDescending" {
+				listGroups = groupieTrackers.BubbleSortByNumberMemberDescending(listGroups)
+			}
+		}
 		if searchUser != "" {
 			listGroups = groupieTrackers.SearchGroupe(searchUser, listGroups)
+		} else {
+			listGroups[0].IsSearch = true
 		}
-		// listGroups = groupieTrackers.TrieAlphabetik(listGroups)
-		// listGroups = groupieTrackers.SortCreationDate(listGroups, false)
-		// listGroups = groupieTrackers.TrieAlphabetik2(listGroups)
-		groupieTrackers.BubbleSort(listGroups)
 		artistPage.Execute(w, listGroups)
 	})
 

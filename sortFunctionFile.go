@@ -63,16 +63,16 @@ func QuickSortingCreationDate(artistGroup []groupe, indexStart int, indexEnd int
 	var pivotIndex int
 	if indexStart < indexEnd {
 		if inAscendingOrder {
-			pivotIndex = SortingAscending(artistGroup, indexStart, indexEnd)
+			pivotIndex = SortingAscendingCreationDate(artistGroup, indexStart, indexEnd)
 		} else if !inAscendingOrder {
-			pivotIndex = SortingDescending(artistGroup, indexStart, indexEnd)
+			pivotIndex = SortingDescendingCreationDate(artistGroup, indexStart, indexEnd)
 		}
 		QuickSortingCreationDate(artistGroup, indexStart, pivotIndex-1, inAscendingOrder)
 		QuickSortingCreationDate(artistGroup, pivotIndex+1, indexEnd, inAscendingOrder)
 	}
 }
 
-func SortingAscending(artistGroup []groupe, indexStart int, indexEnd int) int {
+func SortingAscendingCreationDate(artistGroup []groupe, indexStart int, indexEnd int) int {
 	pivot := artistGroup[indexEnd]
 	indexPivot := indexStart
 	for i := indexStart; i <= indexEnd; i++ {
@@ -89,7 +89,7 @@ func SortingAscending(artistGroup []groupe, indexStart int, indexEnd int) int {
 	return indexPivot
 }
 
-func SortingDescending(artistGroup []groupe, indexStart int, indexEnd int) int {
+func SortingDescendingCreationDate(artistGroup []groupe, indexStart int, indexEnd int) int {
 	pivot := artistGroup[indexEnd]
 	indexPivot := indexStart
 	for i := indexStart; i <= indexEnd; i++ {
@@ -107,7 +107,7 @@ func SortingDescending(artistGroup []groupe, indexStart int, indexEnd int) int {
 }
 
 // Function sorted by number of group members, method used bubble sort
-func BubbleSortByNumberMenmber(artistGroup []groupe) {
+func BubbleSortByNumberMemberAscending(artistGroup []groupe) []groupe {
 	lenArtistGroup := len(artistGroup)
 	hasChanged := true
 	for hasChanged || lenArtistGroup > 1 {
@@ -122,4 +122,23 @@ func BubbleSortByNumberMenmber(artistGroup []groupe) {
 		}
 		lenArtistGroup--
 	}
+	return artistGroup
+}
+
+func BubbleSortByNumberMemberDescending(artistGroup []groupe) []groupe {
+	lenArtistGroup := len(artistGroup)
+	hasChanged := true
+	for hasChanged || lenArtistGroup > 1 {
+		hasChanged = false
+		for i := 0; i < len(artistGroup)-1; i++ {
+			if len(artistGroup[i].Members) < len(artistGroup[i+1].Members) {
+				elementSave := artistGroup[i]
+				artistGroup[i] = artistGroup[i+1]
+				artistGroup[i+1] = elementSave
+				hasChanged = true
+			}
+		}
+		lenArtistGroup--
+	}
+	return artistGroup
 }
