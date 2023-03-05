@@ -40,6 +40,7 @@
                     <img src="{{$artist.Image}}" alt="groupeImage">
                     <h3 class="name">{{$artist.Name}}</h3>
                     <div class="display">
+                        <div class="opacity">
                         <p class="date"> {{$artist.CreationDate}}</p>
                         <div class="membre"> 
                         <p>Members :</p>
@@ -51,6 +52,7 @@
                             <input type="text"  id="info" name="info"  class="idValue" value={{$index}}>
                             <input type="submit"  id="id" name="id" placeholder="+ d'info" value="+d'info">
                         </form>
+                    </div>
                     </div>
                 </div>
                 {{ end }}
