@@ -46,29 +46,28 @@
             </select>
             <input type="submit" value="Appliquer" class="apllyBTN"/>
         </form>
-        <div class="artistes">
-            {{ range . }}
-            <div class="card">
-                <img src="{{.Image}}" alt="groupeImage">
-                <h3 class="name">{{.Name}}</h3> 
-                <div class="display">
-                <div class="membre"> 
-                    <p>Members :</p>
-                    {{ range .Members }}
-                    <p>- {{.}}</p>
-                    {{ end }}
+            <div class="artistes">
+                {{ range $index, $artist := . }}
+                <div class="card">
+                    <img src="{{$artist.Image}}" alt="groupeImage">
+                    <h3 class="name">{{$artist.Name}}</h3>
+                        <div class="display">
+                            <div class="opacity">
+                            <p class="date"> {{$artist.CreationDate}}</p>
+                            <div class="membre"> 
+                                <p>Members :</p>
+                                {{ range $artist.Members }}
+                                <p>-{{.}}</p>
+                                {{ end }}
+                            </div>
+                            <form action = "/concert" method="POST" class="info">
+                                <input type="text"  id="info" name="info"  class="idValue" value={{$index}}>
+                                <input type="submit"  id="id" name="id" placeholder="+ d'info" value="+d'info">
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <p>{{.CreationDate}}</p>
-                <p>{{.FirstAlbum}}</p>
-
-                <form action = "/concert" method="POST" class="info">
-                    <input type="text"  id="info" name="info"  class="idValue" value={{.Id}} >
-                    <input type="submit"  id="id" name="id" placeholder="+ d'info" value="+d'info">
-                </form>
-            </div>
-            </div>
-            {{ end }}
-
+                {{ end }}
             </div>
             <!-- <nav aria-label="pagination">
                 <ul class="pagination">
