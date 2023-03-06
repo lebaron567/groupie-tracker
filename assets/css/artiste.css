@@ -9,7 +9,7 @@
  
 .card {
     border-radius: 10px;
-    background-color : white;
+    background-color : rgb(207, 250, 251);
     border: solid;
     padding: 20px;
     margin: 10px;
@@ -44,7 +44,6 @@ h3.name {
 
 
 .card:hover .display {
-    transition-delay: 0.5s;
     display: flex;
     flex-direction: column;
     font-size: 14px;
@@ -54,7 +53,7 @@ h3.name {
     margin: 0;
 }
 .card:hover .opacity {
-    transition-delay: 1s;
+    transition-delay: 0.7s;
     opacity: 1;
     transition-duration:1s ;
 }
@@ -66,12 +65,12 @@ h3.name {
 
 
 .card:hover .display p{
-    transition-delay: 1s;
+    transition-delay: 0.7s;
     font-size:medium;
     margin: 0;
 }
 .card:hover .display p.date{
-    transition-delay: 1s;
+    transition-delay: 0.7s;
     font-size: small;
 }
 
@@ -94,11 +93,11 @@ p{
 }
 
 .card:hover {
-    transition-delay: 1s;
+    /* transition-delay: 0.5s; */
     transform:scale(1.050);
     height:auto; 
     transition-duration: 1s;
-    transition-property: h;
+    /* transition-property: h; */
     z-index: 5;
 }
 
@@ -138,9 +137,20 @@ form {
     justify-content: center;
     margin: 0 10 0 10px;
 }
+.card:hover .bouton{
+    width: 100px;
+    background-color: #2d8ddb;
+    border: none;
+    color: rgb(227, 224, 224);
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 
 .display form input{
-    width: 100px;
+    width: 1px;
+    height: 1px;
 }
 
 .idValue{

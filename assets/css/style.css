@@ -6,7 +6,8 @@
 }
 
 body {
-    background: linear-gradient(90deg ,hsl(279, 100%, 46%) 15%, #2b94e5 100%);
+    background: rgb(103, 104, 105);
+    margin:0px;
     margin-top: 70px;
     bottom: 0;
 }
@@ -19,14 +20,15 @@ header {
     height: 60px;
     width: 100%;
     top: 0;
+    background-color:#3f3e3e;
     backdrop-filter: blur(5px);
     z-index: 999;
     
 }
 
-label, #toggle {
+/* label, #toggle {
     display: none;
-}
+} */
 
 .nav {
 	height: 100px;
@@ -49,10 +51,10 @@ label, #toggle {
     flex-direction: row;
 }
 
-.nav ul .btn-nav {
+.nav ul .btn-nav a {
     margin: 0 25px;
     font-size: 20px;
-    color: #616161;
+    color: rgb(107, 189, 190);
     
 }
 
