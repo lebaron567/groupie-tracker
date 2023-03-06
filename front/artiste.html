@@ -52,24 +52,22 @@
                 <img src="{{.Image}}" alt="groupeImage">
                 <h3 class="name">{{.Name}}</h3> 
                 <div class="display">
-                <div class="membre"> 
-                    <p>Members :</p>
-                    {{ range .Members }}
-                    <p>- {{.}}</p>
-                    {{ end }}
+                    <div class="membre"> 
+                        <p>Members :</p>
+                        {{ range .Members }}
+                        <p>- {{.}}</p>
+                        {{ end }}
+                    </div>
+                    <p>{{.CreationDate}}</p>
+                    <p>{{.FirstAlbum}}</p>
+                    <form action = "/concert" method="POST" class="info">
+                        <input type="text"  id="info" name="info"  class="idValue" value={{.Id}} >
+                        <input type="submit"  id="id" name="id" placeholder="+ d'info" value="+d'info">
+                    </form>
                 </div>
-                <p>{{.CreationDate}}</p>
-                <p>{{.FirstAlbum}}</p>
-
-                <form action = "/concert" method="POST" class="info">
-                    <input type="text"  id="info" name="info"  class="idValue" value={{.Id}} >
-                    <input type="submit"  id="id" name="id" placeholder="+ d'info" value="+d'info">
-                </form>
-            </div>
             </div>
             {{ end }}
-
-            </div>
+        </div>
             <!-- <nav aria-label="pagination">
                 <ul class="pagination">
                     <li><a href=""><span aria-hidden="true">«</span><span class="visuallyhidden">previous set of pages</span></a></li>
@@ -80,6 +78,5 @@
                     <li><a href=""><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">»</span></a></li>
                 </ul>
             </nav> -->
-                
-    </body>
+    </body> 
 </html>
