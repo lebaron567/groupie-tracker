@@ -26,8 +26,7 @@
              </nav>
         </header>
         <form method="POST">
-            <input id="userinput" type="text" name="userSearch"  placeholder="Search Artiste ..." style="text-align: center;">
-            <input id="usersubmit" class="btn-search" type="submit" value="send" /> 
+            <input id="userinput" type="text" class="userSearch" name="userSearch"  placeholder="Search Artiste ..." style="text-align: center;" >
         </form>
         <div class="errorMsg">
             {{ if not (index . 0).IsSearch }}
