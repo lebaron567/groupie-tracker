@@ -30,13 +30,14 @@
         <div class="display">
             <img src="{{.Image}}" alt="groupeImage">
             <h1> {{.Name}} </h1> 
-            <p>le groupe est crée en {{.CreationDate}} et le premier albume est sorti le {{.FirstAlbum}}</p>
-            <p>les membre sont: {{ range .Members }}
-            - {{.}} {{ end }}</p>
-            <!-- <p>  le groupe {{.Name }} c'est produi dans les ville:  {{ range .Location }} <br> - {{.}} {{ end }}</p>  -->
-            <p> voisi les concert du/des artiste:  </p>
+            <p>le groupe est créé en {{.CreationDate}} et le premier album est sorti le {{.FirstAlbum}}</p>
+            <p>les membres sont : 
+                {{ range .Members }}
+                    - {{.}}
+                {{ end }}</p>
+            <p> voici les concerts du/des artistes :  </p>
             {{ $artist := .}}
-            <div class="localiation">
+            <div class="localisation">
             {{ range $index, $location := .Location }}
                 <div class="lieux">
                 <p>{{ $location }} :</p>
@@ -44,7 +45,7 @@
                 <div class="date">
                 {{ range $date}}
                     <p> {{.}}  </p> 
-                    {{ end }}
+                {{ end }}
                 </div> 
             </div>
             {{ end }}

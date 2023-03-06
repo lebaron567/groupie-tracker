@@ -15,6 +15,7 @@ func main() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets/"))))
 	//récuperer les info de l'"api"
 	listGroups := groupieTrackers.RecupInfo()
+	listGroupsPage1, listGroupsPage2 := groupieTrackers.DiviserEnDeux(listGroups)
 
 	// Load the first page of the game
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -28,7 +29,9 @@ func main() {
 	http.HandleFunc("/artiste", func(w http.ResponseWriter, r *http.Request) {
 		sortingChoices := r.FormValue("sortingChoices")
 		searchUser := r.FormValue("userSearch")
+		pageChoice := r.FormValue("page")
 		if sortingChoices != "" {
+			listGroups = groupieTrackers.RecupInfo()
 			if sortingChoices == "AscendingAlphabeticalSorting" {
 				listGroups = groupieTrackers.AscendingAlphabeticalSorting(listGroups)
 			} else if sortingChoices == "DescendingAlphabeticalSorting" {
@@ -42,6 +45,13 @@ func main() {
 			} else if sortingChoices == "BubbleSortByNumberMemberDescending" {
 				listGroups = groupieTrackers.BubbleSortByNumberMemberDescending(listGroups)
 			}
+			listGroupsPage1, listGroupsPage2 = groupieTrackers.DiviserEnDeux(listGroups)
+		}
+		listGroups = listGroupsPage1
+		if pageChoice != "" {
+			if pageChoice == "page 2" {
+				listGroups = listGroupsPage2
+			}
 		}
 		if searchUser != "" {
 			listGroups = groupieTrackers.SearchGroupe(searchUser, listGroups)
@@ -53,9 +63,7 @@ func main() {
 
 	http.HandleFunc("/concert", func(w http.ResponseWriter, r *http.Request) {
 		id := r.FormValue("info")
-		fmt.Println(id)
 		idNum, _ := strconv.Atoi(id)
-		fmt.Println(idNum)
 		concertPage.Execute(w, listGroups[idNum])
 	})
 

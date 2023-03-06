@@ -50,30 +50,22 @@ func RecupInfo() []groupe {
 	var groups groupe
 	url := "https://groupietrackers.herokuapp.com/api/artists" // adresse url artist
 	infoArtist := RecupInfoArtists(url)
-	// infoDate := RecupDates(infoArtist)
-	// infoLocation := RecupLocation(infoArtist)
 	for i := 0; i < len(g); i++ {
-		groups.Id = infoArtist[i].Id
 		groups.Image = infoArtist[i].Image
 		groups.Name = infoArtist[i].Name
 		groups.Members = infoArtist[i].Members
 		groups.CreationDate = infoArtist[i].CreationDate
 		groups.FirstAlbum = infoArtist[i].FirstAlbum
-		// groups.Dates = infoDate[i].Dates
-		// groups.location = infoLocation[i].Locations
 		groups.IsSearch = false
 		listGroups = append(listGroups, groups)
 	}
 	listGroups[0].IsSearch = true
 	listGroups = RecupRealtion(listGroups)
-	// for _, artist := range listGroups {
-	// 	print(artist.Name)
-	// }
 	return listGroups
 }
 
 func RecupInfoArtists(url string) []artist {
-	req, _ := http.NewRequest("GET", url, nil)
+	req, _ := http.NewRequest("GET", "https://groupietrackers.herokuapp.com/api/artists", nil)
 	res, erre := http.DefaultClient.Do(req)
 	if erre != nil {
 		fmt.Println("Error", erre)
