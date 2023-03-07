@@ -23,7 +23,8 @@ func main() {
 	})
 
 	http.HandleFunc("/location", func(w http.ResponseWriter, r *http.Request) {
-		locationPage.Execute(w, listGroups)
+		listLocatin:=groupieTrackers.SortLieux(listGroups)
+		locationPage.Execute(w, listLocatin)
 	})
 
 	http.HandleFunc("/artiste", func(w http.ResponseWriter, r *http.Request) {

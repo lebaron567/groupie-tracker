@@ -1,0 +1,20 @@
+.location{
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.display{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+
+p, pre{
+    margin: 0;
+}

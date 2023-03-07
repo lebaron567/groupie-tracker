@@ -6,6 +6,7 @@
     <title>Groupie-Tracker</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/location.css'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -24,20 +25,22 @@
                 </ul>
              </nav>
         </header>
-        <!-- <div>
-            {{ $indexSearch := 0}}
-            {{ $artist := index . $indexSearch}}
-            {{ $artist.Name}}
-            <br>
-            {{ range $index, $location := $artist.Location }}
-                {{ $location }}
-                {{ $date := index $artist.Dates $index }}
+        <div class="display">
+        {{ range . }}
+         <div class="location">
+            {{ $location := .}}
+            <p>{{ .Ville }} en {{ .Pays }} </p>
+            {{ range $index, $Groupe := .Groupe }}
+            <pre>  {{ $Groupe }}:  </pre>
+            {{ $date := index $location.Date $index }}
+            <div class="date">
                 {{ range $date}}
-                <p>- hh   {{.}}</p>
-                    <br>
+                    <p> {{ .}}  </p> 
                 {{ end }}
-            {{ end }}
-
-        </div> -->
+            </div>
+            {{ end }} 
+        </div>
+        {{ end }}
+    </div>
 </body>
 </html>
