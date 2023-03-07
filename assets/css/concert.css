@@ -16,7 +16,7 @@ img{
     filter: drop-shadow(10px 10px 4px #353548);
 }
 
-.localiation{
+.localisation{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;

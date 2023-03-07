@@ -30,11 +30,11 @@
         <div class="display">
             <img src="{{.Image}}" alt="groupeImage">
             <h1> {{.Name}} </h1> 
-            <p>le groupe est créé en {{.CreationDate}} et le premier album est sorti le {{.FirstAlbum}}</p>
-            <p>les membres sont : 
-                {{ range .Members }}
-                    - {{.}}
-                {{ end }}</p>
+            <p>Le groupe est créé en {{.CreationDate}} et le premier album est sorti le {{.FirstAlbum}}.</p>
+            <p>Les membres sont : 
+                {{ range $index, $Members := .Members }}
+                    {{$Members}},
+                {{ end }}.</p>
             <p> voici les concerts du/des artistes :  </p>
             {{ $artist := .}}
             <div class="localisation">

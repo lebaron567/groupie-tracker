@@ -65,12 +65,12 @@ h3.name {
 
 
 .card:hover .display p{
-    transition-delay: 0.7s;
+    transition-delay: 0.5s;
     font-size:medium;
     margin: 0;
 }
 .card:hover .display p.date{
-    transition-delay: 0.7s;
+    transition-delay: 0.5s;
     font-size: small;
 }
 
