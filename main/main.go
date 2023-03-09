@@ -15,7 +15,10 @@ func main() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets/"))))
 	//récuperer les info de l'"api"
 	listGroups := groupieTrackers.RecupInfo()
-	listGroupsPage1, listGroupsPage2 := groupieTrackers.DiviserEnDeux(listGroups)
+	newlistGroups := groupieTrackers.DiviserEnListeDeXelement(listGroups, 52)
+	numberPageChoice := 0
+
+	// listGroupsPage1, listGroupsPage2 := groupieTrackers.DiviserEnDeux(listGroups)
 
 	// Load the first page of the game
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -27,37 +30,53 @@ func main() {
 	})
 
 	http.HandleFunc("/artiste", func(w http.ResponseWriter, r *http.Request) {
-		sortingChoices := r.FormValue("sortingChoices")
-		searchUser := r.FormValue("userSearch")
+		numberOfItemsOnPage := r.FormValue("numberPage")
 		pageChoice := r.FormValue("page")
-		if sortingChoices != "" {
-			listGroups = groupieTrackers.RecupInfo()
-			if sortingChoices == "AscendingAlphabeticalSorting" {
-				listGroups = groupieTrackers.AscendingAlphabeticalSorting(listGroups)
-			} else if sortingChoices == "DescendingAlphabeticalSorting" {
-				listGroups = groupieTrackers.DescendingAlphabeticalSorting(listGroups)
-			} else if sortingChoices == "SortingAscendingCreationDate" {
-				listGroups = groupieTrackers.SortingCreationDate(listGroups, true)
-			} else if sortingChoices == "SortingDescendingCreationDate" {
-				listGroups = groupieTrackers.SortingCreationDate(listGroups, false)
-			} else if sortingChoices == "BubbleSortByNumberMemberAscending" {
-				listGroups = groupieTrackers.BubbleSortByNumberMemberAscending(listGroups)
-			} else if sortingChoices == "BubbleSortByNumberMemberDescending" {
-				listGroups = groupieTrackers.BubbleSortByNumberMemberDescending(listGroups)
-			}
-			listGroupsPage1, listGroupsPage2 = groupieTrackers.DiviserEnDeux(listGroups)
-		}
-		listGroups = listGroupsPage1
 		if pageChoice != "" {
-			if pageChoice == "page 2" {
-				listGroups = listGroupsPage2
+			if pageChoice == "precedent" && numberPageChoice > 0 {
+				numberPageChoice--
+			} else if pageChoice == "suivant" && numberPageChoice < len(newlistGroups)-1 {
+				numberPageChoice++
+			}
+		} else {
+			if numberOfItemsOnPage != "" {
+				listGroups = groupieTrackers.RecupInfo()
+				number, _ := strconv.Atoi(numberOfItemsOnPage)
+				newlistGroups = groupieTrackers.DiviserEnListeDeXelement(listGroups, number)
+			} else {
+				listGroups = groupieTrackers.RecupInfo()
+				newlistGroups = groupieTrackers.DiviserEnListeDeXelement(listGroups, 52)
 			}
 		}
-		if searchUser != "" {
-			listGroups = groupieTrackers.SearchGroupe(searchUser, listGroups)
-		} else {
-			listGroups[0].IsSearch = true
-		}
+		/*
+			if sortingChoices != "" {
+				listGroups = groupieTrackers.RecupInfo()
+				if sortingChoices == "AscendingAlphabeticalSorting" {
+					listGroups = groupieTrackers.AscendingAlphabeticalSorting(listGroups)
+				} else if sortingChoices == "DescendingAlphabeticalSorting" {
+					listGroups = groupieTrackers.DescendingAlphabeticalSorting(listGroups)
+				} else if sortingChoices == "SortingAscendingCreationDate" {
+					listGroups = groupieTrackers.SortingCreationDate(listGroups, true)
+				} else if sortingChoices == "SortingDescendingCreationDate" {
+					listGroups = groupieTrackers.SortingCreationDate(listGroups, false)
+				} else if sortingChoices == "BubbleSortByNumberMemberAscending" {
+					listGroups = groupieTrackers.BubbleSortByNumberMemberAscending(listGroups)
+				} else if sortingChoices == "BubbleSortByNumberMemberDescending" {
+					listGroups = groupieTrackers.BubbleSortByNumberMemberDescending(listGroups)
+				}
+			}
+				sortingChoices := r.FormValue("sortingChoices")
+
+				if searchUser != "" {
+					listGroups = groupieTrackers.SearchGroupe(searchUser, listGroups)
+				} else {
+					listGroups[0].IsSearch = true
+				}
+				searchUser := r.FormValue("userSearch")
+		*/
+
+		listGroups = newlistGroups[numberPageChoice]
+		listGroups[0].NumberOfPage = len(newlistGroups)
 		artistPage.Execute(w, listGroups)
 	})
 

@@ -32,15 +32,15 @@ func SearchGroupe(nameSearch string, g []groupe) []groupe {
 	return g2
 }
 
-func DiviserEnDeux(g []groupe) ([]groupe, []groupe) {
-	page1 := []groupe{}
-	page2 := []groupe{}
-	for index, element := range g {
-		if index <= (len(g)-1)/2 {
-			page1 = append(page1, element)
-		} else {
-			page2 = append(page2, element)
+func DiviserEnListeDeXelement(artistGroup []groupe, x int) [][]groupe {
+	newArtistGroup := [][]groupe{}
+	page := []groupe{}
+	for index := range artistGroup {
+		page = append(page, artistGroup[index])
+		if len(page) == x {
+			newArtistGroup = append(newArtistGroup, page)
+			page = []groupe{}
 		}
 	}
-	return page1, page2
+	return newArtistGroup
 }

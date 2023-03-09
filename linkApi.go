@@ -42,6 +42,7 @@ type groupe struct {
 	Dates        [][]string
 	Location     []string
 	IsSearch     bool
+	NumberOfPage int
 }
 
 // {"artists":"https://groupietrackers.herokuapp.com/api/artists","locations":"https://groupietrackers.herokuapp.com/api/locations","dates":"https://groupietrackers.herokuapp.com/api/dates","relation":"https://groupietrackers.herokuapp.com/api/relation"}
