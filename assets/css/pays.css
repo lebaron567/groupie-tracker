@@ -1,0 +1,58 @@
+.ville{
+    display: flex;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: rgb(207, 250, 251);
+    border: solid;
+    z-index: 5;
+    flex-wrap: wrap;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    min-height: 200px;
+}
+
+.display{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.idValue{
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+h1 {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+p,h4{
+    margin: 0;
+}
+
+.group{
+    display: flex;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    border: solid;
+    border-color: rgb(72, 212, 116);
+    margin:  10px;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    height: auto;
+}
+.groups{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}

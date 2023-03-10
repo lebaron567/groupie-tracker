@@ -5,13 +5,14 @@ import (
 )
 
 // Function that load all templates for all pages
-func LoadTemplates() (*template.Template, *template.Template, *template.Template, *template.Template) {
+func LoadTemplates() (*template.Template, *template.Template, *template.Template, *template.Template,*template.Template) {
 	homePage := template.Must(template.ParseFiles("./front/index.html"))
 	artistPage := template.Must(template.ParseFiles("./front/artiste.html"))
 	locationPage := template.Must(template.ParseFiles("./front/location.html"))
 	concertPage := template.Must(template.ParseFiles("./front/concert.html"))
+	paysPage := template.Must(template.ParseFiles("./front/pays.html"))
 
-	return homePage, artistPage, locationPage, concertPage
+	return homePage, artistPage, locationPage, concertPage, paysPage
 }
 
 func SearchGroupe(nameSearch string, g []groupe) []groupe {

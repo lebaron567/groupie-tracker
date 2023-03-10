@@ -9,13 +9,14 @@ import (
 )
 
 func main() {
-	homePage, artistPage, locationPage, concertPage := groupieTrackers.LoadTemplates()
+	homePage, artistPage, locationPage, concertPage, paysPage := groupieTrackers.LoadTemplates()
 	fmt.Println("Serveur start at : http://localhost:8080/")
 	// Load all assets :
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets/"))))
 	//récuperer les info de l'"api"
 	listGroups := groupieTrackers.RecupInfo()
 	listGroupsPage1, listGroupsPage2 := groupieTrackers.DiviserEnDeux(listGroups)
+	listLocatin:=groupieTrackers.SortLieux(listGroups)
 
 	// Load the first page of the game
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -23,7 +24,7 @@ func main() {
 	})
 
 	http.HandleFunc("/location", func(w http.ResponseWriter, r *http.Request) {
-		listLocatin:=groupieTrackers.SortLieux(listGroups)
+		
 		locationPage.Execute(w, listLocatin)
 	})
 
@@ -66,6 +67,12 @@ func main() {
 		id := r.FormValue("info")
 		idNum, _ := strconv.Atoi(id)
 		concertPage.Execute(w, listGroups[idNum])
+	})
+
+	http.HandleFunc("/pays", func(w http.ResponseWriter, r *http.Request) {
+		id := r.FormValue("info")
+		idNum, _ := strconv.Atoi(id)
+		paysPage.Execute(w, listLocatin[idNum])
 	})
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {

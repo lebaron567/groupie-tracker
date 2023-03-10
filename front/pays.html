@@ -6,13 +6,13 @@
     <title>Groupie-Tracker</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/location.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/pays.css'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
         <header>
              <nav class="nav">
-                <ul>
+                 <ul>
                      <li class="btn-nav">
                          <a href="index">Home</a>
                      </li>
@@ -22,19 +22,29 @@
                      <li class="btn-nav">
                          <a href="location">Location</a>
                      </li>
-                </ul>
+                 </ul>
              </nav>
         </header>
+        <h1>{{ .Pays}} </h1>
         <div class="display">
-        <h3> clique sur le nom d'un pays pour avoir les groupe que vont/ont jouer la-bas avec la date</h3>
-        <div class="location">
-        {{ range $i, $location := . }}
-            <form action = "/pays" method="POST" class="info">
-                <input type="text"  id="info" name="info"  class="idValue" value={{$i}}>
-                <input type="submit"  id="id" name="id" class="bouton" value="{{ $location.Pays  }}">
-            </form>
+            {{range .Villes }}
+            {{$location := .}}
+            <div class="ville"> <h4> {{ $location.Name }} </h4>
+            <div class="groups">
+            {{ range $index, $Groupe := $location.Groupe }}
+            <div class="group">
+                <p> {{ $Groupe }} : </p> 
+                {{ $date := index $location.Date $index }}
+                <div class="date">
+                {{ range $date}}
+                    <p> {{.}}&nbsp;</p>   <p>  </p> 
+                {{ end }}
+                </div> 
+            </div>
+            {{ end }}
+            </div>
+            </div>
             {{ end }}
         </div>
-    </div>
 </body>
 </html>
