@@ -44,6 +44,7 @@ h3.name {
 
 
 .card:hover .display {
+    transition-delay: 0.3s;
     display: flex;
     flex-direction: column;
     font-size: 14px;
@@ -106,7 +107,7 @@ p{
 }
 
 .card:hover {
-    /* transition-delay: 0.5s; */
+    transition-delay: 0.3s;
     transform:scale(1.050);
     height:auto; 
     transition-duration: 1s;
