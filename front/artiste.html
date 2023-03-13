@@ -28,6 +28,7 @@
         <form method="POST">
             <input id="userinput" type="text" class="userSearch" name="userSearch"  placeholder="Search Artiste ..." style="text-align: center;" >
         </form>
+        
         <div class="errorMsg">
             {{ if not (index . 0).IsSearch }}
                 <p>Ce nom n'est pas présent dans cette page</p>
@@ -42,6 +43,16 @@
                 <option value="SortingDescendingCreationDate">Dates de Création (décroissant)</option>
                 <option value="BubbleSortByNumberMemberAscending">Nombre de membre (croissant)</option>
                 <option value="BubbleSortByNumberMemberDescending">Nombre de membre (décroissant)</option>
+            </select>
+            <input type="submit" value="Appliquer" class="apllyBTN"/>
+        </form>
+        <form method="POST">
+            <select name="numberPage" id="pageChoices" class="sortingChoicesBar">
+                <option disabled selected> Nombres d'élements affichés </option>
+                <option value="4"> Afficher 4 élements</option>
+                <option value="13"> Afficher 13 élements</option>
+                <option value="26"> Afficher 26 élements</option>
+                <option value="52"> Afficher 52 élements</option>
             </select>
             <input type="submit" value="Appliquer" class="apllyBTN"/>
         </form>
@@ -70,8 +81,8 @@
             </div>
             <div class="">
                 <form method="POST">
-                    <input type="submit"  id="id" name="page" value="page 1">
-                    <input type="submit"  id="id" name="page" value="page 2">
+                    <input type="submit"  id="id" name="page" value="precedent">
+                    <input type="submit"  id="id" name="page" value="suivant">
                 </form>
             </div>
     </body> 

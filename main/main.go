@@ -15,8 +15,9 @@ func main() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets/"))))
 	//récuperer les info de l'"api"
 	listGroups := groupieTrackers.RecupInfo()
-	listGroupsPage1, listGroupsPage2 := groupieTrackers.DiviserEnDeux(listGroups)
-	listLocatin:=groupieTrackers.SortLieux(listGroups)
+	newlistGroups := groupieTrackers.DiviserEnListeDeXelement(listGroups, len(listGroups))
+	listLocatin := groupieTrackers.SortLieux(listGroups)
+	numberPageChoice := 0
 
 	// Load the first page of the game
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -24,40 +25,38 @@ func main() {
 	})
 
 	http.HandleFunc("/location", func(w http.ResponseWriter, r *http.Request) {
-		
 		locationPage.Execute(w, listLocatin)
 	})
 
 	http.HandleFunc("/artiste", func(w http.ResponseWriter, r *http.Request) {
-		sortingChoices := r.FormValue("sortingChoices")
-		searchUser := r.FormValue("userSearch")
+		numberOfItemsOnPage := r.FormValue("numberPage")
 		pageChoice := r.FormValue("page")
-		if sortingChoices != "" {
-			listGroups = groupieTrackers.RecupInfo()
-			if sortingChoices == "AscendingAlphabeticalSorting" {
-				listGroups = groupieTrackers.AscendingAlphabeticalSorting(listGroups)
-			} else if sortingChoices == "DescendingAlphabeticalSorting" {
-				listGroups = groupieTrackers.DescendingAlphabeticalSorting(listGroups)
-			} else if sortingChoices == "SortingAscendingCreationDate" {
-				listGroups = groupieTrackers.SortingCreationDate(listGroups, true)
-			} else if sortingChoices == "SortingDescendingCreationDate" {
-				listGroups = groupieTrackers.SortingCreationDate(listGroups, false)
-			} else if sortingChoices == "BubbleSortByNumberMemberAscending" {
-				listGroups = groupieTrackers.BubbleSortByNumberMemberAscending(listGroups)
-			} else if sortingChoices == "BubbleSortByNumberMemberDescending" {
-				listGroups = groupieTrackers.BubbleSortByNumberMemberDescending(listGroups)
-			}
-			listGroupsPage1, listGroupsPage2 = groupieTrackers.DiviserEnDeux(listGroups)
-		}
-		listGroups = listGroupsPage1
+		searchUser := r.FormValue("userSearch")
+		sortingChoices := r.FormValue("sortingChoices")
+
 		if pageChoice != "" {
-			if pageChoice == "page 2" {
-				listGroups = listGroupsPage2
+			if pageChoice == "precedent" && numberPageChoice > 0 {
+				numberPageChoice--
+			} else if pageChoice == "suivant" && numberPageChoice < len(newlistGroups)-1 {
+				numberPageChoice++
+			}
+		} else {
+			numberPageChoice = 0
+			if searchUser != "" {
+				newlistGroups = groupieTrackers.SearchGroupe(searchUser, newlistGroups)
+			} else if sortingChoices != "" {
+				newlistGroups = groupieTrackers.SortElement(sortingChoices, len(newlistGroups[0]))
+			} else {
+				if numberOfItemsOnPage != "" {
+					number, _ := strconv.Atoi(numberOfItemsOnPage)
+					newlistGroups = groupieTrackers.ReconstituerEtDiviserEnListeDeXelement(newlistGroups, number)
+				} else {
+					newlistGroups = groupieTrackers.ReconstituerEtDiviserEnListeDeXelement(newlistGroups, 52)
+				}
 			}
 		}
-		if searchUser != "" {
-			listGroups = groupieTrackers.SearchGroupe(searchUser, listGroups)
-		} else {
+		listGroups = newlistGroups[numberPageChoice]
+		if searchUser == "" {
 			listGroups[0].IsSearch = true
 		}
 		artistPage.Execute(w, listGroups)
@@ -78,4 +77,8 @@ func main() {
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func RecupInfo() {
+	panic("unimplemented")
 }
