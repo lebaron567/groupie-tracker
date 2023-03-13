@@ -14,18 +14,19 @@ func main() {
 	// Load all assets :
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets/"))))
 	//récuperer les info de l'"api"
-	listGroups := groupieTrackers.RecupInfo()
-	newlistGroups := groupieTrackers.DiviserEnListeDeXelement(listGroups, len(listGroups))
-	listLocatin := groupieTrackers.SortLieux(listGroups)
-	numberPageChoice := 0
+	infoPrinted := groupieTrackers.Init()
+	listLocation := groupieTrackers.SortLieux(infoPrinted.ArtistList)
 
 	// Load the first page of the game
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		homePage.Execute(w, listGroups)
+		homePage.Execute(w, infoPrinted)
 	})
 
 	http.HandleFunc("/location", func(w http.ResponseWriter, r *http.Request) {
-		locationPage.Execute(w, listLocatin)
+		infoPrinted.ArtistList = groupieTrackers.RecupAllRelation(infoPrinted.ArtistList)
+		infoPrinted.PaginatedArtistList = groupieTrackers.DiviserEnListeDeXelement(infoPrinted.ArtistList, len(infoPrinted.PaginatedArtistList[0]))
+		listLocation = groupieTrackers.SortLieux(infoPrinted.ArtistList)
+		locationPage.Execute(w, listLocation)
 	})
 
 	http.HandleFunc("/artiste", func(w http.ResponseWriter, r *http.Request) {
@@ -35,43 +36,43 @@ func main() {
 		sortingChoices := r.FormValue("sortingChoices")
 
 		if pageChoice != "" {
-			if pageChoice == "precedent" && numberPageChoice > 0 {
-				numberPageChoice--
-			} else if pageChoice == "suivant" && numberPageChoice < len(newlistGroups)-1 {
-				numberPageChoice++
+			if pageChoice == "precedent" && infoPrinted.IndexCurrentPage > 0 {
+				infoPrinted.IndexCurrentPage--
+			} else if pageChoice == "suivant" && infoPrinted.IndexCurrentPage < len(infoPrinted.PaginatedArtistList)-1 {
+				infoPrinted.IndexCurrentPage++
 			}
 		} else {
-			numberPageChoice = 0
+			infoPrinted.IndexCurrentPage = 0
 			if searchUser != "" {
-				newlistGroups = groupieTrackers.SearchGroupe(searchUser, newlistGroups)
+				infoPrinted = groupieTrackers.SearchGroupe(searchUser, infoPrinted)
 			} else if sortingChoices != "" {
-				newlistGroups = groupieTrackers.SortElement(sortingChoices, len(newlistGroups[0]))
+				infoPrinted.PaginatedArtistList = groupieTrackers.SortElement(sortingChoices, len(infoPrinted.PaginatedArtistList[0]))
 			} else {
 				if numberOfItemsOnPage != "" {
 					number, _ := strconv.Atoi(numberOfItemsOnPage)
-					newlistGroups = groupieTrackers.ReconstituerEtDiviserEnListeDeXelement(newlistGroups, number)
+					infoPrinted.PaginatedArtistList = groupieTrackers.ReconstituerEtDiviserEnListeDeXelement(infoPrinted.PaginatedArtistList, number)
 				} else {
-					newlistGroups = groupieTrackers.ReconstituerEtDiviserEnListeDeXelement(newlistGroups, 52)
+					infoPrinted.PaginatedArtistList = groupieTrackers.ReconstituerEtDiviserEnListeDeXelement(infoPrinted.PaginatedArtistList, 52)
 				}
 			}
 		}
-		listGroups = newlistGroups[numberPageChoice]
-		if searchUser == "" {
-			listGroups[0].IsSearch = true
-		}
-		artistPage.Execute(w, listGroups)
+		artistPage.Execute(w, infoPrinted)
 	})
 
 	http.HandleFunc("/concert", func(w http.ResponseWriter, r *http.Request) {
 		id := r.FormValue("info")
 		idNum, _ := strconv.Atoi(id)
-		concertPage.Execute(w, listGroups[idNum])
+		if len(infoPrinted.ArtistList[idNum].Location) <= 1 {
+			infoPrinted.ArtistList = groupieTrackers.RecupRelation(infoPrinted.ArtistList, idNum)
+			infoPrinted.PaginatedArtistList = groupieTrackers.DiviserEnListeDeXelement(infoPrinted.ArtistList, len(infoPrinted.PaginatedArtistList[0]))
+		}
+		concertPage.Execute(w, infoPrinted.ArtistList[idNum])
 	})
 
 	http.HandleFunc("/pays", func(w http.ResponseWriter, r *http.Request) {
 		id := r.FormValue("info")
 		idNum, _ := strconv.Atoi(id)
-		paysPage.Execute(w, listLocatin[idNum])
+		paysPage.Execute(w, listLocation[idNum])
 	})
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {

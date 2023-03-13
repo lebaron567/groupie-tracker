@@ -30,7 +30,7 @@
         </form>
         
         <div class="errorMsg">
-            {{ if not (index . 0).IsSearch }}
+            {{ if .IsNotFind }}
                 <p>Ce nom n'est pas présent dans cette page</p>
             {{ end }}
         </div>
@@ -57,7 +57,8 @@
             <input type="submit" value="Appliquer" class="apllyBTN"/>
         </form>
             <div class="artistes">
-                {{ range $index, $artist := . }}
+                {{ $newGroupList := index .PaginatedArtistList .IndexCurrentPage }}
+                {{ range $index, $artist := $newGroupList }}
                 <div class="card">
                     <img src="{{$artist.Image}}" alt="groupeImage">
                     <h3 class="name">{{$artist.Name}}</h3>
