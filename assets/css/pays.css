@@ -56,3 +56,12 @@ p,h4{
     flex-wrap: wrap;
     align-items: flex-start;
 }
+
+.date {
+    max-width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
