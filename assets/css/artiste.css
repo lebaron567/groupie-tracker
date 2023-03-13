@@ -203,7 +203,6 @@ form {
 /* --- Sorting choices bar --- */
 .sortingChoicesBar {
     height: 6vh;
-    width: 25vw;
     background-color: #f5f5f5;
     display: flex;
     align-items: center;
@@ -222,59 +221,13 @@ form {
 
 .apllyBTN{
     background-color: #ABABAB;
-    padding: 0.5rem;
+    padding: 15px;
     height: 6vh;
     width: 10vw;
+    width: auto;
     text-align: center;
 }
     
-.sortingChoicesBar{
-    display: flex;
-    flex-direction: row;
-    align-items: center ;
-    /* justify-content: flex-end; */
-    height: 120px;
-    width: 200px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-/* .sortingChoicesBar option:checked {
-    background-color: #ccc;
-    color: #000;
-} */
-
-
-/* --- Sorting choices bar --- */
-.sortingChoicesBar {
-    height: 6vh;
-    width: 25vw;
-    background-color: #f5f5f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* .sortingChoicesBar{
-    padding: 10px;
-    font-size: 16px;
-}
-
-.sortingChoicesBar:checked {
-    background-color: #444;
-    color: #f5f5f5;
-} */
-
-.apllyBTN{
-    background-color: #ABABAB;
-    padding: 0.5rem;
-    height: 6vh;
-    width: 10vw;
-    text-align: center;
-}
-
 .apllyBTN:hover{
     background-color: #616161;
 }

@@ -6,6 +6,7 @@
     <title>Groupie-Tracker</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/home.css'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -13,7 +14,7 @@
              <nav class="nav">
                  <ul>
                      <li class="btn-nav">
-                         <a href="index">Home</a>
+                         <a href="home">Home</a>
                      </li>
                      <li class="btn-nav">
                          <a href="artiste">Artiste</a>
@@ -28,6 +29,22 @@
             <p>Bienvenue dans notre projet groupie tracker.</p>
             <p>Le but est de récupérer des informations venant d'une api</p>
             <p>Puis de retransmettre ces informations dans un site web</p>
+        </div>
+        {{ $artist := . }}
+        <div class="card">
+            <img src="{{$artist.Image}}" alt="groupeImage">
+            <h3 class="name">{{$artist.Name}}</h3>
+                <div class="display">
+                    <div class="opacity">
+                    <p class="date"> {{$artist.CreationDate}}</p>
+                    <div class="membre"> 
+                        <p>Members :</p>
+                        {{ range $artist.Members }}
+                        <p>-{{.}}</p>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
         </div>
         <footer>
             <div class="credit">

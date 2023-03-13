@@ -10,7 +10,7 @@ import (
 
 func main() {
 	homePage, artistPage, locationPage, concertPage, paysPage := groupieTrackers.LoadTemplates()
-	fmt.Println("Serveur start at : http://localhost:8080/")
+	fmt.Println("Serveur start at : http://localhost:8080/home")
 	// Load all assets :
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets/"))))
 	//récuperer les info de l'"api"
@@ -20,8 +20,8 @@ func main() {
 	numberPageChoice := 0
 
 	// Load the first page of the game
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		homePage.Execute(w, listGroups)
+	http.HandleFunc("/home", func(w http.ResponseWriter, r *http.Request) {
+		homePage.Execute(w, groupieTrackers.RomdomArtist())
 	})
 
 	http.HandleFunc("/location", func(w http.ResponseWriter, r *http.Request) {

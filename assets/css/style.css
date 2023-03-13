@@ -76,11 +76,12 @@ footer{
     display: flex;
     flex-direction: row;
     color: #ffffff;
-    background-color: #000000;
+    background-color: #3f3e3e;
     justify-content: flex-end;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: -webkit-fill-available;
+    height: 30px;
 }
 /* Artiste page */
 main {

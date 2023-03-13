@@ -18,12 +18,12 @@ img{
 
 .localisation{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
-    width: 800px;
 }
 
 .lieux{
+    margin-top: 30px;
     display: flex;
     margin-left: 10px;
     margin-right: 10px;
