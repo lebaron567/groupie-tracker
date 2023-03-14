@@ -1,5 +1,7 @@
 p, h1{
+    display: flex;
     margin: 0;
+    justify-content: space-around;
 }
 
 .display {
@@ -18,17 +20,22 @@ img{
 
 .localisation{
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .lieux{
+    border: solid;
+    background-color: rgb(207, 250, 251);;
     margin-top: 30px;
     display: flex;
     margin-left: 10px;
     margin-right: 10px;
     flex-direction: column;
     align-items: center;
+    filter: drop-shadow(7px 7px 4px #353548);
+    padding: 5px;
 }
 
 .date {
@@ -40,4 +47,12 @@ img{
 
 .date p {
     margin-right: 7px;
+}
+.groupe{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+h1{
+    color: rgb(225, 160, 54);
 }

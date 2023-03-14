@@ -117,7 +117,6 @@ p{
     transform:scale(1.050);
     height:auto; 
     transition-duration: 1s;
-    /* transition-property: h; */
     z-index: 5;
 }
 
@@ -160,13 +159,18 @@ form {
 .card:hover .bouton{
     transition-delay: 0.5s;
     width: 100px;
-    background-color: #2d8ddb;
+    background-color: #4fabd8;;
     border: none;
     color: rgb(227, 224, 224);
     padding: 16px 32px;
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
+    transition-duration: 0.8s;
+}
+.card:hover .bouton:hover{
+    transition-delay: 0s;
+    background-color: #1176ca;
 }
 
 .display form input{
@@ -237,4 +241,16 @@ form {
     
 .apllyBTN:hover{
     background-color: #616161;
+}
+
+.pagination input{
+    width: 100px;
+    background-color: #4fabd8;
+    color: rgb(227, 224, 224);
+    padding: 7px 100px;
+    margin: 7px 7px;
+    transition-duration: 0.8s;
+}
+.pagination input:hover{
+    background-color: #1176ca;
 }
