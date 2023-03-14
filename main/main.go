@@ -18,7 +18,7 @@ func main() {
 	listLocation := groupieTrackers.SortLieux(infoPrinted.ArtistList)
 
 	// Load the first page of the game
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/home", func(w http.ResponseWriter, r *http.Request) {
 		homePage.Execute(w, infoPrinted)
 	})
 
