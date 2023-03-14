@@ -62,7 +62,7 @@ func main() {
 	http.HandleFunc("/concert", func(w http.ResponseWriter, r *http.Request) {
 		id := r.FormValue("info")
 		idNum, _ := strconv.Atoi(id)
-		if len(infoPrinted.ArtistList[idNum].Location) <= 1 {
+		if len(infoPrinted.ArtistList[idNum].Location) == 0 {
 			infoPrinted.ArtistList = groupieTrackers.RecupRelation(infoPrinted.ArtistList, idNum)
 			infoPrinted.PaginatedArtistList = groupieTrackers.DiviserEnListeDeXelement(infoPrinted.ArtistList, len(infoPrinted.PaginatedArtistList[0]))
 		}
