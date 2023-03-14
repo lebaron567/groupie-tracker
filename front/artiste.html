@@ -14,19 +14,19 @@
             <nav class="nav">
                  <ul>
                      <li class="btn-nav">
-                         <a href="home">Home</a>
+                         <a href="home">Accueil</a>
                      </li>
                      <li class="btn-nav">
                          <a href="artiste">Artiste</a>
                      </li>
                      <li class="btn-nav">
-                         <a href="location">Location</a>
+                         <a href="location">Localisation</a>
                      </li>
                 </ul>
              </nav>
         </header>
         <form method="POST">
-            <input id="userinput" type="text" class="userSearch" name="userSearch"  placeholder="Search Artiste ..." style="text-align: center;" >
+            <input id="userinput" type="text" class="userSearch" name="userSearch"  placeholder="Recherche artiste ..." style="text-align: center;" >
         </form>
         
         <div class="errorMsg">
@@ -34,7 +34,7 @@
                 <p>Ce nom n'est pas présent dans cette page</p>
             {{ end }}
         </div>
-        <form method="POST">
+        <form method="POST" class="select">
             <select name="sortingChoices" id="sortingChoices" class="sortingChoicesBar">
                 <option disabled selected> Filtres </option>
                 <option value="AscendingAlphabeticalSorting"> A -> Z</option>
@@ -44,11 +44,8 @@
                 <option value="BubbleSortByNumberMemberAscending">Nombre de membre (croissant)</option>
                 <option value="BubbleSortByNumberMemberDescending">Nombre de membre (décroissant)</option>
             </select>
-            <input type="submit" value="Appliquer" class="apllyBTN"/>
-        </form>
-        <form method="POST">
-            <select name="numberPage" id="pageChoices" class="sortingChoicesBar">
-                <option disabled selected> Nombres d'élements affichés </option>
+            <select name="numberPage" id="pageChoices" class="PageSelectionBar">
+                <option disabled selected> Nombres d'élements </option>
                 <option value="4"> Afficher 4 élements</option>
                 <option value="13"> Afficher 13 élements</option>
                 <option value="26"> Afficher 26 élements</option>
