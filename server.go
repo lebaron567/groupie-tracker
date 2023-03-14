@@ -5,7 +5,7 @@ import (
 )
 
 // Function that load all templates for all pages
-func LoadTemplates() (*template.Template, *template.Template, *template.Template, *template.Template,*template.Template) {
+func LoadTemplates() (*template.Template, *template.Template, *template.Template, *template.Template, *template.Template) {
 	homePage := template.Must(template.ParseFiles("./front/index.html"))
 	artistPage := template.Must(template.ParseFiles("./front/artiste.html"))
 	locationPage := template.Must(template.ParseFiles("./front/location.html"))
@@ -16,7 +16,7 @@ func LoadTemplates() (*template.Template, *template.Template, *template.Template
 }
 
 func SortElement(sortingChoices string, lenNewlistGroups int) [][]groupe {
-	listGroups := RecupInfo()
+	listGroups := RecupInfoArtist()
 	if sortingChoices == "AscendingAlphabeticalSorting" {
 		listGroups = AscendingAlphabeticalSorting(listGroups)
 	} else if sortingChoices == "DescendingAlphabeticalSorting" {
@@ -34,15 +34,15 @@ func SortElement(sortingChoices string, lenNewlistGroups int) [][]groupe {
 	return nlistGroups
 }
 
-func SearchGroupe(nameSearch string, artistGroup [][]groupe) [][]groupe {
+func SearchGroupe(nameSearch string, infoPrinted printedInfo) printedInfo {
+	artistGroup := infoPrinted.PaginatedArtistList
 	newArtistGroup := ReconstituerList(artistGroup)
 	g2 := []groupe{}
-	for index, element := range newArtistGroup {
+	infoPrinted.IsNotFind = true
+	for _, element := range newArtistGroup {
 		if element.Name == nameSearch {
 			g2 = append(g2, element)
-			g2[0].IsSearch = true
-		} else {
-			newArtistGroup[index].IsSearch = false
+			infoPrinted.IsNotFind = false
 		}
 	}
 	for _, element := range newArtistGroup {
@@ -51,7 +51,8 @@ func SearchGroupe(nameSearch string, artistGroup [][]groupe) [][]groupe {
 		}
 	}
 	newArtistGroup2 := DiviserEnListeDeXelement(g2, len(artistGroup[0]))
-	return newArtistGroup2
+	infoPrinted.PaginatedArtistList = newArtistGroup2
+	return infoPrinted
 }
 
 func DiviserEnListeDeXelement(artistGroup []groupe, x int) [][]groupe {
