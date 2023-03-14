@@ -45,16 +45,16 @@ func main() {
 			infoPrinted.IndexCurrentPage = 0
 			if searchUser != "" {
 				infoPrinted = groupieTrackers.SearchGroupe(searchUser, infoPrinted)
-			} else if sortingChoices != "" {
+			} 
+			if sortingChoices != "" {
 				infoPrinted.PaginatedArtistList = groupieTrackers.SortElement(sortingChoices, len(infoPrinted.PaginatedArtistList[0]))
-			} else {
+			}
 				if numberOfItemsOnPage != "" {
 					number, _ := strconv.Atoi(numberOfItemsOnPage)
 					infoPrinted.PaginatedArtistList = groupieTrackers.ReconstituerEtDiviserEnListeDeXelement(infoPrinted.PaginatedArtistList, number)
 				} else {
 					infoPrinted.PaginatedArtistList = groupieTrackers.ReconstituerEtDiviserEnListeDeXelement(infoPrinted.PaginatedArtistList, 52)
 				}
-			}
 		}
 		artistPage.Execute(w, infoPrinted)
 	})
