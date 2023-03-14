@@ -10,7 +10,7 @@ import (
 
 func main() {
 	homePage, artistPage, locationPage, concertPage, paysPage := groupieTrackers.LoadTemplates()
-	fmt.Println("Serveur start at : http://localhost:8080/")
+	fmt.Println("Serveur start at : http://localhost:8080/home")
 	// Load all assets :
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets/"))))
 	//récuperer les info de l'"api"

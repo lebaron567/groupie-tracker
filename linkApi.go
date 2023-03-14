@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"net/http"
 	"strconv"
 )
@@ -214,4 +215,31 @@ func RecupRelation(listGroups []groupe, indexGroupImplemented int) []groupe {
 		listGroups[indexGroupImplemented].Dates = append(listGroups[indexGroupImplemented].Dates, r.DatesLocations[location])
 	}
 	return listGroups
+}
+
+func RomdomArtist() groupe {
+	var artistRamdom artist = artist{}
+	randomInt := rand.Intn(51)
+	for randomInt==0{
+		randomInt = rand.Intn(51)
+	}
+	url := "https://groupietrackers.herokuapp.com/api/artists/" + strconv.Itoa(randomInt)
+	req, _ := http.NewRequest("GET", url, nil)
+	res, erre := http.DefaultClient.Do(req)
+	if erre != nil {
+		fmt.Println("Error", erre)
+	}
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+	err := json.Unmarshal([]byte(body), &artistRamdom)
+	if err != nil {
+		fmt.Println("Error", err)
+	}
+	var groups groupe
+	groups.Image = artistRamdom.Image
+	groups.Name = artistRamdom.Name
+	groups.Members = artistRamdom.Members
+	groups.CreationDate = artistRamdom.CreationDate
+	groups.FirstAlbum = artistRamdom.FirstAlbum
+	return groups
 }

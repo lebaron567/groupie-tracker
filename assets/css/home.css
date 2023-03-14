@@ -1,0 +1,120 @@
+.artistes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;;
+    padding-top: 25px;
+}
+ 
+.card {
+    border-radius: 10px;
+    background-color : rgb(207, 250, 251);
+    border: solid;
+    padding: 20px;
+    margin: auto;
+    /* height: 300px; */
+    width: 250px;
+    transition: 0.05s;
+    z-index: 5;
+    margin-top: 15px;
+    margin-bottom: 80px;
+
+}
+
+h3.name {
+    color: #121212;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+    
+}
+
+.card .display {
+    display: flex;
+    font-size: 14px;
+    margin: 0;
+    height: 1%;
+    width: 1%;
+}
+
+.card .opacity {
+    display: flex;
+    opacity: 0;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.card:hover .display {
+    transition-delay: 0.3s;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+.card:hover .opacity {
+    transition-delay: 0.7s;
+    opacity: 1;
+    transition-duration:1s ;
+}
+
+.card .display p{
+    font-size:1px;
+    margin: 0;
+}
+
+
+.card:hover .display p{
+    transition-delay: 0.5s;
+    font-size:medium;
+    margin: 0;
+}
+.card:hover .display p.date{
+    transition-delay: 0.5s;
+    font-size: small;
+}
+
+p.name{
+    display: flex;
+    justify-content: center;
+    color: #121212;
+}
+.userSearch{
+    background-image:url(/assets/img/loupe.png);   
+    background-position: left;
+    background-size: 5%;
+    background-repeat:no-repeat;
+    background-position-x: 4px;
+    padding-left:18px;
+}
+.card img{
+    border: solid;
+    border-color: #121212;
+    display: flex;
+    justify-content: center;
+}
+
+p{
+    margin: 0;
+}
+
+.card:hover {
+    transition-delay: 0.3s;
+    transform:scale(1.050);
+    height:auto; 
+    transition-duration: 1s;
+    /* transition-property: h; */
+    z-index: 5;
+}
+
+.information {
+    display: flex;
+    margin: 30px;
+    align-items: center;    
+    justify-content: center;
+    flex-direction: column;
+    color: #ffffff;
+}

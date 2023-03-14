@@ -74,13 +74,26 @@ header {
 
 footer{
     display: flex;
-    flex-direction: row;
     color: #ffffff;
-    background-color: #000000;
+    background-color: #3f3e3e;
     justify-content: flex-end;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: -webkit-fill-available;
+    height: 50px;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+footer img {
+    height: 50px;
+}
+
+* {
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
 }
 /* Artiste page */
 main {
