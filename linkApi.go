@@ -186,6 +186,8 @@ func RecupAllRelation(g []groupe) []groupe {
 		fmt.Println("Error", err)
 	}
 	for index := 0; index < len(g); index++ {
+		g[index].Location = []string{}
+		g[index].Dates = [][]string{}
 		for location := range i.Index[index].DatesLocations {
 			g[index].Location = append(g[index].Location, location)
 			g[index].Dates = append(g[index].Dates, i.Index[index].DatesLocations[location])
@@ -196,7 +198,7 @@ func RecupAllRelation(g []groupe) []groupe {
 
 // Implementation of a variable with the necessary info from relations
 func RecupRelation(listGroups []groupe, indexGroupImplemented int) []groupe {
-	id := strconv.Itoa(listGroups[indexGroupImplemented].Id + 1)
+	id := strconv.Itoa(indexGroupImplemented + 1)
 	url := "https://groupietrackers.herokuapp.com/api/relation" + "/" + id
 	req, _ := http.NewRequest("GET", url, nil)
 	res, erre := http.DefaultClient.Do(req)
@@ -220,7 +222,7 @@ func RecupRelation(listGroups []groupe, indexGroupImplemented int) []groupe {
 func RomdomArtist() groupe {
 	var artistRamdom artist = artist{}
 	randomInt := rand.Intn(51)
-	for randomInt==0{
+	for randomInt == 0 {
 		randomInt = rand.Intn(51)
 	}
 	url := "https://groupietrackers.herokuapp.com/api/artists/" + strconv.Itoa(randomInt)
