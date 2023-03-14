@@ -10,10 +10,10 @@ import (
 	"strconv"
 )
 
-// Liens des api
+// api link
 // {"artists":"https://groupietrackers.herokuapp.com/api/artists","locations":"https://groupietrackers.herokuapp.com/api/locations","dates":"https://groupietrackers.herokuapp.com/api/dates","relation":"https://groupietrackers.herokuapp.com/api/relation"}
 
-// Structure pour récupérer les données des artistes
+// Structure for retrieving artist data
 type artist struct {
 	Id           int      `json:"id"`
 	Image        string   `json:"image"`
@@ -26,10 +26,10 @@ type artist struct {
 	Relations    string   `json:"relations"`
 }
 
-// Création varriable globale qui va contenir tous les artistes de l'api
+// Creation of a global variable that will contain all the artists of the api
 var artistList []artist
 
-// Varriable qui va lier les info de l'api artist et les infos de l'api relation
+// Variable that will link the info of the api artist and the info of the api relation
 type groupe struct {
 	Id           int
 	Image        string
@@ -41,7 +41,7 @@ type groupe struct {
 	Location     []string
 }
 
-// Varriable qui serra envoyer sur la page afin d'être afficher
+// Variable that will be sent to the page to be displayed
 type printedInfo struct {
 	ArtistList          []groupe
 	PaginatedArtistList [][]groupe
@@ -49,6 +49,7 @@ type printedInfo struct {
 	IndexCurrentPage    int
 }
 
+// Function that initializes the relationship with the api needed to launch the site
 func Init() printedInfo {
 	listGroups := RecupInfoArtist()
 	var infoPrinted printedInfo
@@ -58,7 +59,7 @@ func Init() printedInfo {
 	return infoPrinted
 }
 
-// Ajout dans la liste de groupes/artistes des info artistes
+// Add in the list of groups/artists of the artists info
 func RecupInfoArtist() []groupe {
 	var listGroups []groupe
 	var groups groupe
@@ -75,9 +76,9 @@ func RecupInfoArtist() []groupe {
 	return listGroups
 }
 
-// Récupération info api artiste
+// Artist info retrieval
 func RecupInfoArtists() []artist {
-	url := "https://groupietrackers.herokuapp.com/api/artists" // adresse url artist
+	url := "https://groupietrackers.herokuapp.com/api/artists" // address url artist
 	req, _ := http.NewRequest("GET", url, nil)
 	res, erre := http.DefaultClient.Do(req)
 	if erre != nil {
@@ -92,17 +93,17 @@ func RecupInfoArtists() []artist {
 	return artistList
 }
 
-// Varriable qui va contenir tous les dates des artistes de l'api
+// Variable that will contain all the dates of the artists of the api
 type date struct {
 	Id    int      `json:"id"`
 	Dates []string `json:"dates"`
 }
 
-// Récupération info api dates
+// Recovering info api dates
 func RecupDates(g []artist) []date {
 	var listDate []date
 	for i := 0; i < len(g); i++ {
-		url := g[i].ConcertDates // adresse url
+		url := g[i].ConcertDates // url address
 		req, _ := http.NewRequest("GET", url, nil)
 		res, erre := http.DefaultClient.Do(req)
 		if erre != nil {
@@ -121,14 +122,14 @@ func RecupDates(g []artist) []date {
 	return listDate
 }
 
-// Varriable qui va contenir tous les locations des artistes de l'api
+// Variable that will contain all the artist rentals of the api
 type location struct {
 	Id        int      `json:"id"`
 	Locations []string `json:"locations"`
 	Dates     string   `json:"dates"`
 }
 
-// Récupération info api location
+//Recovering info api location
 func RecupLocation(g []artist) []location {
 	var lisrRelation []location
 	for i := 0; i < len(g); i++ {
@@ -151,7 +152,7 @@ func RecupLocation(g []artist) []location {
 	return lisrRelation
 }
 
-// Initialisation des varriables qui contiendrons les infos de relations
+// Initialization of the variables that will contain the relationship information
 func initialisationRelation(listGroups []groupe) []groupe {
 	for index := range listGroups {
 		listGroups[index].Location = []string{}
@@ -160,7 +161,7 @@ func initialisationRelation(listGroups []groupe) []groupe {
 	return listGroups
 }
 
-// Création varriable nécessaire à la récupération de données de l'api relation
+// Creation of variable necessary to retrieve data from the relation api
 type indexage struct {
 	Index []relation `json:"index"`
 }
@@ -169,7 +170,7 @@ type relation struct {
 	DatesLocations map[string][]string `json:"datesLocations"`
 }
 
-// Implémentation de toutes les varriables avec les infos de relations
+// Implementation of all variables with relationship info
 func RecupAllRelation(g []groupe) []groupe {
 	req, _ := http.NewRequest("GET", "https://groupietrackers.herokuapp.com/api/relation", nil)
 	res, erre := http.DefaultClient.Do(req)
@@ -192,25 +193,25 @@ func RecupAllRelation(g []groupe) []groupe {
 	return g
 }
 
-// Implémentation d'une varriables avec les infos nécessaire de relations
+// Implementation of a variable with the necessary info from relations
 func RecupRelation(listGroups []groupe, indexGroupImplemented int) []groupe {
-	id := strconv.Itoa(listGroups[indexGroupImplemented].Id)
+	id := strconv.Itoa(listGroups[indexGroupImplemented].Id + 1)
 	url := "https://groupietrackers.herokuapp.com/api/relation" + "/" + id
 	req, _ := http.NewRequest("GET", url, nil)
 	res, erre := http.DefaultClient.Do(req)
 	if erre != nil {
 		fmt.Println("Error", erre)
 	}
-	var i indexage
+	var r relation
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
-	err := json.Unmarshal([]byte(body), &i)
+	err := json.Unmarshal([]byte(body), &r)
 	if err != nil {
 		fmt.Println("Error", err)
 	}
-	for location := range i.Index[0].DatesLocations {
+	for location := range r.DatesLocations {
 		listGroups[indexGroupImplemented].Location = append(listGroups[indexGroupImplemented].Location, location)
-		listGroups[indexGroupImplemented].Dates = append(listGroups[indexGroupImplemented].Dates, i.Index[0].DatesLocations[location])
+		listGroups[indexGroupImplemented].Dates = append(listGroups[indexGroupImplemented].Dates, r.DatesLocations[location])
 	}
 	return listGroups
 }
