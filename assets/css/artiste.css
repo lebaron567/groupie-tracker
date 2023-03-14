@@ -13,7 +13,7 @@
     border: solid;
     padding: 20px;
     margin: 10px;
-    /* height: 300px; */
+    height: auto; 
     width: 250px;
     transition: 0.05s;
     z-index: 5;
@@ -44,7 +44,7 @@ h3.name {
 
 
 .card:hover .display {
-    transition-delay: 0.3s;
+    transition-delay: 0.5s;
     display: flex;
     flex-direction: column;
     font-size: 14px;
@@ -73,6 +73,12 @@ h3.name {
 .card:hover .display p.date{
     transition-delay: 0.5s;
     font-size: small;
+}
+.card:hover img{
+    border: solid;
+    border-color:rgba(235, 6, 6, 0.86);
+    display: flex;
+    justify-content: center;
 }
 
 p.name{
@@ -152,6 +158,7 @@ form {
     margin: 0 10 0 10px;
 }
 .card:hover .bouton{
+    transition-delay: 0.5s;
     width: 100px;
     background-color: #2d8ddb;
     border: none;
