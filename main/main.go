@@ -19,7 +19,7 @@ func main() {
 
 	// Load the first page of the game
 	http.HandleFunc("/home", func(w http.ResponseWriter, r *http.Request) {
-		homePage.Execute(w, infoPrinted)
+		homePage.Execute(w, groupieTrackers.RomdomArtist())
 	})
 
 	http.HandleFunc("/location", func(w http.ResponseWriter, r *http.Request) {
