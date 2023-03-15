@@ -34,7 +34,11 @@ func main() {
 		pageChoice := r.FormValue("page")
 		searchUser := r.FormValue("userSearch")
 		sortingChoices := r.FormValue("sortingChoices")
-
+		reset := r.FormValue("Reinitialiser")
+		if reset != "" {
+			infoPrinted = groupieTrackers.Init()
+			listLocation = groupieTrackers.SortLieux(infoPrinted.ArtistList)
+		}
 		if pageChoice != "" {
 			if pageChoice == "precedent" && infoPrinted.IndexCurrentPage > 0 {
 				infoPrinted.IndexCurrentPage--
@@ -45,16 +49,16 @@ func main() {
 			infoPrinted.IndexCurrentPage = 0
 			if searchUser != "" {
 				infoPrinted = groupieTrackers.SearchGroupe(searchUser, infoPrinted)
-			} 
+			}
 			if sortingChoices != "" {
 				infoPrinted.PaginatedArtistList = groupieTrackers.SortElement(sortingChoices, len(infoPrinted.PaginatedArtistList[0]))
 			}
-				if numberOfItemsOnPage != "" {
-					number, _ := strconv.Atoi(numberOfItemsOnPage)
-					infoPrinted.PaginatedArtistList = groupieTrackers.ReconstituerEtDiviserEnListeDeXelement(infoPrinted.PaginatedArtistList, number)
-				} else {
-					infoPrinted.PaginatedArtistList = groupieTrackers.ReconstituerEtDiviserEnListeDeXelement(infoPrinted.PaginatedArtistList, 52)
-				}
+			if numberOfItemsOnPage != "" {
+				number, _ := strconv.Atoi(numberOfItemsOnPage)
+				infoPrinted.PaginatedArtistList = groupieTrackers.ReconstituerEtDiviserEnListeDeXelement(infoPrinted.PaginatedArtistList, number)
+			} else {
+				infoPrinted.PaginatedArtistList = groupieTrackers.ReconstituerEtDiviserEnListeDeXelement(infoPrinted.PaginatedArtistList, 52)
+			}
 		}
 		artistPage.Execute(w, infoPrinted)
 	})
@@ -75,11 +79,7 @@ func main() {
 		paysPage.Execute(w, listLocation[idNum])
 	})
 
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	if err := http.ListenAndServe(":8088", nil); err != nil {
 		log.Fatal(err)
 	}
-}
-
-func RecupInfo() {
-	panic("unimplemented")
 }

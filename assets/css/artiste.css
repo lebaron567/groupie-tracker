@@ -1,4 +1,14 @@
+@media (max-width:700px) {
+    .searchBar{
+        gap: 1rem;
+    }
+}
 
+@media (min-width:700px) {
+    .searchBar{
+        gap: 23rem;
+    }
+}
 .artistes{
     display: flex;
     flex-wrap: wrap;
@@ -120,8 +130,6 @@ p{
     z-index: 5;
 }
 
-
-
 input {
     display: flex;
     align-items: center;
@@ -188,13 +196,6 @@ form {
     justify-content: flex-end;
 }
 
-
-/* .sortingChoicesBar option:checked {
-    background-color: #ccc;
-    color: #000;
-} */
-
-
 /* --- Sorting choices bar --- */
 .sortingChoicesBar {
     height: 6vh;
@@ -220,7 +221,6 @@ form {
     margin-top: 10px;
 }
 
-
 .apllyBTN{
     background-color: #ABABAB;
     padding: 15px;
@@ -244,4 +244,20 @@ form {
 }
 .pagination input:hover{
     background-color: #1176ca;
+}
+
+.refreshBTN{
+    margin-top: 10px;
+    align-self: flex-start;
+    margin-left: 2vh;
+    justify-self: flex-start;
+}
+
+.searchBar{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    width: 100%;
+  
 }
