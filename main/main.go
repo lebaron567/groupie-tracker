@@ -79,7 +79,7 @@ func main() {
 		paysPage.Execute(w, listLocation[idNum])
 	})
 
-	if err := http.ListenAndServe(":8088", nil); err != nil {
+	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
 	}
 }
